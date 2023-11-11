@@ -1,5 +1,9 @@
 package christmas.domain;
 
+import static christmas.ExceptionMessage.INVALID_ORDER;
+
+import java.util.Arrays;
+
 public enum Menu {
     MUSHROOM_SOUP("양송이수프", 6_000),
     TABAS("타바스", 5_500),
@@ -24,6 +28,17 @@ public enum Menu {
     Menu(String name, int price) {
         this.name = name;
         this.price = price;
+    }
+
+    public static Menu findMenuBy(final String name) {
+        return Arrays.stream(Menu.values())
+                .filter(m -> m.isEqualName(name))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException(INVALID_ORDER.getMessage()));
+    }
+
+    private boolean isEqualName(String name) {
+        return this.name.equals(name);
     }
 
 }
