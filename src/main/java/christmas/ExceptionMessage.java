@@ -1,7 +1,7 @@
 package christmas;
 
 public enum ExceptionMessage {
-    INVALID_DAY("유효하지 않은 주문입니다. 다시 입력해 주세요."),
+    INVALID_DAY("유효하지 않은 날짜입니다. 다시 입력해 주세요."),
     INVALID_ORDER("유효하지 않은 주문입니다. 다시 입력해 주세요."),
     INVALID_ORDER_MENU("음료 메뉴만은 주문이 불가능합니다."),
     EXCEED_ORDER_MENU_AMOUNT("메뉴는 한번에 20개까지만 주문할 수 있습니다."),
