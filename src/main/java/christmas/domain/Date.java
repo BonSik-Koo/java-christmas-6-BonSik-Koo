@@ -26,14 +26,19 @@ public class Date {
         return eventSeasons.contains(EventSeason.CHRISTMAS);
     }
 
-    public boolean isWeekDaySeason(){
+    public boolean isWeekDaySeason() {
         List<EventSeason> eventSeasons = EventSeason.findEventSeasonByDay(day);
         return eventSeasons.contains(EventSeason.WEEKDAY);
     }
 
-    public boolean isWeekEndSeason(){
+    public boolean isWeekEndSeason() {
         List<EventSeason> eventSeasons = EventSeason.findEventSeasonByDay(day);
         return eventSeasons.contains(EventSeason.WEEKEND);
+    }
+
+    public boolean isSpecialSeason() {
+        List<EventSeason> eventSeasons = EventSeason.findEventSeasonByDay(day);
+        return eventSeasons.contains(EventSeason.SPECIAL);
     }
 
 }
