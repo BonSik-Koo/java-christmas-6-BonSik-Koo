@@ -26,4 +26,9 @@ public class Date {
         return eventSeasons.contains(EventSeason.CHRISTMAS);
     }
 
+    public boolean isWeekDaySeason(){
+        List<EventSeason> eventSeasons = EventSeason.findEventSeasonByDay(day);
+        return eventSeasons.contains(EventSeason.WEEKDAY);
+    }
+
 }

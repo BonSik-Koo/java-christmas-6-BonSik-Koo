@@ -21,13 +21,27 @@ class DateTest {
 
     @DisplayName("현재 날짜가 크리스마스 시즌의 날짜인지 확인한다.")
     @ParameterizedTest
-    @ValueSource(ints = {1,2,3,4,5,10,25})
+    @ValueSource(ints = {1, 2, 3, 4, 5, 10, 25})
     void isChristmasSeasonDay(int day) {
         //given
         Date date = new Date(day);
 
         //when
         boolean result = date.isChristmasSeason();
+
+        //then
+        assertThat(result).isTrue();
+    }
+
+    @DisplayName("현재 날짜가 평일 시즌의 날짜인지 확인한다.")
+    @ParameterizedTest
+    @ValueSource(ints = {3, 7, 10, 14, 17, 21})
+    void isWeekDaySeasonDay(int day) {
+        //given
+        Date date = new Date(day);
+
+        //when
+        boolean result = date.isWeekDaySeason();
 
         //then
         assertThat(result).isTrue();
