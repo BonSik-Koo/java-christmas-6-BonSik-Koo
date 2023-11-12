@@ -31,4 +31,9 @@ public class Date {
         return eventSeasons.contains(EventSeason.WEEKDAY);
     }
 
+    public boolean isWeekEndSeason(){
+        List<EventSeason> eventSeasons = EventSeason.findEventSeasonByDay(day);
+        return eventSeasons.contains(EventSeason.WEEKEND);
+    }
+
 }

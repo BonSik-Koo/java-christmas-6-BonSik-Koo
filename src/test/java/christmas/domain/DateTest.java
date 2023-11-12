@@ -47,4 +47,18 @@ class DateTest {
         assertThat(result).isTrue();
     }
 
+    @DisplayName("현재 날짜가 주말 시즌의 날짜인지 확인한다.")
+    @ParameterizedTest
+    @ValueSource(ints = {1,2,8,9,29})
+    void isWeekEndSeasonDay(int day) {
+        //given
+        Date date = new Date(day);
+
+        //when
+        boolean result = date.isWeekEndSeason();
+
+        //then
+        assertThat(result).isTrue();
+    }
+
 }
