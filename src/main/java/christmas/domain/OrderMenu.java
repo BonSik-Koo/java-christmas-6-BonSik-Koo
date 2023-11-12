@@ -24,4 +24,8 @@ public class OrderMenu {
         return amount;
     }
 
+    public Menu getMenu() {
+        return menu;
+    }
+
 }
