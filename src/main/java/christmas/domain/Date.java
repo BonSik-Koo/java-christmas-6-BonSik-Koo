@@ -2,6 +2,8 @@ package christmas.domain;
 
 import static christmas.ExceptionMessage.INVALID_DAY;
 
+import java.util.List;
+
 public class Date {
     private final int startDay = 1;
     private final int endDay = 31;
@@ -13,10 +15,15 @@ public class Date {
         this.day = day;
     }
 
-    public void validateDay(int day){
-        if(startDay > day || endDay < day){
+    public void validateDay(int day) {
+        if (startDay > day || endDay < day) {
             throw new IllegalArgumentException(INVALID_DAY.getMessage());
         }
+    }
+
+    public boolean isChristmasSeason() {
+        List<EventSeason> eventSeasons = EventSeason.findEventSeasonByDay(day);
+        return eventSeasons.contains(EventSeason.CHRISTMAS);
     }
 
 }

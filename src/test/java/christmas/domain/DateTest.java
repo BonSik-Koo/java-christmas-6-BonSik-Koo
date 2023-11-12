@@ -1,5 +1,6 @@
 package christmas.domain;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import christmas.ExceptionMessage;
@@ -16,6 +17,20 @@ class DateTest {
         assertThatThrownBy(() -> new Date(day))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ExceptionMessage.INVALID_DAY.getMessage());
+    }
+
+    @DisplayName("현재 날짜가 크리스마스 시즌의 날짜인지 확인한다.")
+    @ParameterizedTest
+    @ValueSource(ints = {1,2,3,4,5,10,25})
+    void isChristmasSeasonDay(int day) {
+        //given
+        Date date = new Date(day);
+
+        //when
+        boolean result = date.isChristmasSeason();
+
+        //then
+        assertThat(result).isTrue();
     }
 
 }
