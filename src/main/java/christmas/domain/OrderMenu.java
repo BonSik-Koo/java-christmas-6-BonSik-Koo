@@ -28,4 +28,9 @@ public class OrderMenu {
         return menu;
     }
 
+    public boolean isDrinkMenu() {
+        Category category = Category.findCategoryBy(menu);
+        return category.equals(Category.DRINK);
+    }
+
 }

@@ -1,7 +1,9 @@
 package christmas.domain;
 
+import static christmas.ExceptionMessage.NOT_EXIST_CATEGORY;
 import static christmas.domain.Menu.*;
 
+import java.util.Arrays;
 import java.util.List;
 
 public enum Category {
@@ -14,6 +16,13 @@ public enum Category {
 
     Category(List<Menu> menus) {
         this.menus = menus;
+    }
+
+    public static Category findCategoryBy(Menu menu) {
+        return Arrays.stream(Category.values())
+                .filter(c -> c.menus.contains(menu))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException(NOT_EXIST_CATEGORY.getMessage()));
     }
 
 }

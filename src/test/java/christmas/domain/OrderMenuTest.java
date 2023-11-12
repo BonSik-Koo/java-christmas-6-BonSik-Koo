@@ -1,9 +1,11 @@
 package christmas.domain;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import christmas.ExceptionMessage;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -20,6 +22,23 @@ class OrderMenuTest {
         assertThatThrownBy(() -> new OrderMenu(menu, inputAmount))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ExceptionMessage.INVALID_ORDER.getMessage());
+    }
+
+    @DisplayName("주문한 메뉴의 카테고리가 음료인지 확인한다.")
+    @Test
+    void isDrinkMenu() {
+        //given
+        OrderMenu orderMenu = createOrderMenu(Menu.RED_WINE, 4);
+
+        //when
+        boolean result = orderMenu.isDrinkMenu();
+
+        //then
+        assertThat(result).isTrue();
+    }
+
+    private OrderMenu createOrderMenu(Menu menu, int amount) {
+        return new OrderMenu(menu, amount);
     }
 
 }

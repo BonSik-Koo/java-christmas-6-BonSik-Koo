@@ -1,6 +1,9 @@
 package christmas.domain;
 
-import christmas.ExceptionMessage;
+import static christmas.ExceptionMessage.EXCEED_ORDER_MENU_AMOUNT;
+import static christmas.ExceptionMessage.INVALID_ORDER;
+import static christmas.ExceptionMessage.INVALID_ORDER_MENU;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -12,6 +15,7 @@ public class OrderMenus {
     public OrderMenus(final List<OrderMenu> orderMenus) {
         validateMenuCount(orderMenus);
         validateDuplicationMenu(orderMenus);
+        validateOnlyDrinkMenu(orderMenus);
 
         this.orderMenus = orderMenus;
     }
@@ -21,7 +25,7 @@ public class OrderMenus {
                 .mapToInt(OrderMenu::getAmount)
                 .sum();
         if (totalCount > MAX_ORDER_MENU_AMOUNT) {
-            throw new IllegalArgumentException(ExceptionMessage.EXCEED_ORDER_MENU_AMOUNT.getMessage());
+            throw new IllegalArgumentException(EXCEED_ORDER_MENU_AMOUNT.getMessage());
         }
     }
 
@@ -29,8 +33,18 @@ public class OrderMenus {
         Set<Menu> menus = new HashSet<>();
         for (OrderMenu orderMenu : orderMenus) {
             if (!menus.add(orderMenu.getMenu())) {
-                throw new IllegalArgumentException(ExceptionMessage.INVALID_ORDER.getMessage());
+                throw new IllegalArgumentException(INVALID_ORDER.getMessage());
             }
+        }
+    }
+
+    private void validateOnlyDrinkMenu(List<OrderMenu> orderMenus) {
+        int drinkMenuCount = orderMenus.stream()
+                .filter(OrderMenu::isDrinkMenu)
+                .toList()
+                .size();
+        if (drinkMenuCount == orderMenus.size()) {
+            throw new IllegalArgumentException(INVALID_ORDER_MENU.getMessage());
         }
     }
 

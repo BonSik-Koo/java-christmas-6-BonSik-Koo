@@ -39,6 +39,21 @@ class OrderMenusTest {
                 .hasMessage(ExceptionMessage.INVALID_ORDER.getMessage());
     }
 
+    @DisplayName("음료 메뉴만 주문할 경우 예외가 발생한다.")
+    @Test
+    void createOrderByOnlyDrinkMenu() {
+        //given
+        List<OrderMenu> orderMenus = List.of(
+                createOrderMenu(Menu.CHAMPAGNE, 5),
+                createOrderMenu(Menu.ZERO_COLA, 4)
+        );
+
+        //when & then
+        assertThatThrownBy(() -> new OrderMenus(orderMenus))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ExceptionMessage.INVALID_ORDER_MENU.getMessage());
+    }
+
     private OrderMenu createOrderMenu(Menu menu, int amount) {
         return new OrderMenu(menu, amount);
     }
