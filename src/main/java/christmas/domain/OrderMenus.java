@@ -20,6 +20,12 @@ public class OrderMenus {
         this.orderMenus = orderMenus;
     }
 
+    public int calculateTotalPrice(){
+        return orderMenus.stream()
+                .mapToInt(OrderMenu::calculatePrice)
+                .sum();
+    }
+
     private void validateMenuCount(List<OrderMenu> orderMenus) {
         int totalCount = orderMenus.stream()
                 .mapToInt(OrderMenu::getAmount)

@@ -37,6 +37,22 @@ class OrderMenuTest {
         assertThat(result).isTrue();
     }
 
+    @DisplayName("주문한 메뉴의 가격을 계산한다.")
+    @Test
+    void calculatePriceByMenuPriceAndAmount() {
+        //given
+        final Menu menu = Menu.CHAMPAGNE;
+        final int amount = 4;
+        final int predictionPrice = menu.getPrice() * amount;
+        OrderMenu orderMenu = createOrderMenu(menu, amount);
+
+        //when
+        int price = orderMenu.calculatePrice();
+
+        //then
+        assertThat(price).isEqualTo(predictionPrice);
+    }
+
     private OrderMenu createOrderMenu(Menu menu, int amount) {
         return new OrderMenu(menu, amount);
     }

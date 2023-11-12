@@ -33,4 +33,8 @@ public class OrderMenu {
         return category.equals(Category.DRINK);
     }
 
+    public int calculatePrice() {
+        return menu.getPrice() * amount;
+    }
+
 }

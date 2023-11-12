@@ -1,5 +1,6 @@
 package christmas.domain;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import christmas.ExceptionMessage;
@@ -52,6 +53,29 @@ class OrderMenusTest {
         assertThatThrownBy(() -> new OrderMenus(orderMenus))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ExceptionMessage.INVALID_ORDER_MENU.getMessage());
+    }
+
+    @DisplayName("주문한 메뉴의 총 가격을 계산한다.")
+    @Test
+    void calculateTotalPrice() {
+        //given
+        final Menu champagne = Menu.CHAMPAGNE;
+        final int champagneAmount = 3;
+        final Menu iceCream = Menu.ICE_CREAM;
+        final int iceCreamAmount = 2;
+        List<OrderMenu> menus = List.of(
+                createOrderMenu(champagne, champagneAmount),
+                createOrderMenu(iceCream, iceCreamAmount)
+        );
+        OrderMenus orderMenus = new OrderMenus(menus);
+
+        final int predictionTotalPrice = (champagne.getPrice() * champagneAmount) + (iceCream.getPrice() * iceCreamAmount);
+
+        //when
+        int totalPrice = orderMenus.calculateTotalPrice();
+
+        //then
+        assertThat(totalPrice).isEqualTo(predictionTotalPrice);
     }
 
     private OrderMenu createOrderMenu(Menu menu, int amount) {
