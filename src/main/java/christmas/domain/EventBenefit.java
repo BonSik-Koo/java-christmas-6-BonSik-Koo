@@ -36,4 +36,9 @@ public class EventBenefit {
                 .sum();
     }
 
+    public int getTotalBenefitPrice() {
+        int totalDiscountPrice = getTotalDiscountPrice();
+        return totalDiscountPrice + presentMenu.getPrice();
+    }
+
 }

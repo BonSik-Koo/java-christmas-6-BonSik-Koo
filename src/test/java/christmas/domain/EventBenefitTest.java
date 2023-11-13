@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 class EventBenefitTest {
 
-    @DisplayName("총 할인 혜택 금액을 계산한다.")
+    @DisplayName("총 할인 금액을 계산한다.")
     @Test
     void calculateTotalDiscountPrice() {
         //given
@@ -31,7 +31,7 @@ class EventBenefitTest {
         assertThat(totalDiscountPrice).isEqualTo(predictionTotalPrice);
     }
 
-    @DisplayName("총 할인 혜택 금액이 존재하지 않는다.")
+    @DisplayName("총 할인 금액이 존재하지 않는다.")
     @Test
     void zeroTotalDiscountPrice() {
         //given
@@ -50,6 +50,28 @@ class EventBenefitTest {
 
         //then
         assertThat(totalDiscountPrice).isEqualTo(0);
+    }
+
+    @DisplayName("총 혜택 금액을 계산한다.")
+    @Test
+    void calculateTotalBenefitPrice() {
+        //given
+        final int predictionTotalPrice = (2023 * 2) + 1000 + 25000;
+        Date date = new Date(31); // 평일, 특별 할인
+
+        List<OrderMenu> menus = List.of(
+                createOrderMenu(Menu.ICE_CREAM, 10),
+                createOrderMenu(Menu.CHOCOLATE_CAKE, 10)
+        );
+        OrderMenus orderMenus = new OrderMenus(menus);
+
+        EventBenefit eventBenefit = new EventBenefit(date, orderMenus);
+
+        //when
+        int totalBenefitPrice = eventBenefit.getTotalBenefitPrice();
+
+        //then
+        assertThat(totalBenefitPrice).isEqualTo(predictionTotalPrice);
     }
 
     private OrderMenu createOrderMenu(Menu menu, int amount) {
