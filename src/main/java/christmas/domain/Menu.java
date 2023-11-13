@@ -19,7 +19,9 @@ public enum Menu {
 
     ZERO_COLA("제로콜라", 3_000),
     RED_WINE("레드와인", 60_000),
-    CHAMPAGNE("샴페인", 25_000);
+    CHAMPAGNE("샴페인", 25_000),
+
+    NONE("", 0);
 
     private final String name;
 
@@ -30,7 +32,7 @@ public enum Menu {
         this.price = price;
     }
 
-    public int getPrice(){
+    public int getPrice() {
         return price;
     }
 
