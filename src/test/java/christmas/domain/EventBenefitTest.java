@@ -31,6 +31,27 @@ class EventBenefitTest {
         assertThat(totalDiscountPrice).isEqualTo(predictionTotalPrice);
     }
 
+    @DisplayName("총 할인 혜택 금액이 존재하지 않는다.")
+    @Test
+    void zeroTotalDiscountPrice() {
+        //given
+        Date date = new Date(30); // 주말 할인
+
+        List<OrderMenu> menus = List.of(
+                createOrderMenu(Menu.ICE_CREAM, 1),
+                createOrderMenu(Menu.CHOCOLATE_CAKE, 1)
+        );
+        OrderMenus orderMenus = new OrderMenus(menus);
+
+        EventBenefit eventBenefit = new EventBenefit(date, orderMenus);
+
+        //when
+        int totalDiscountPrice = eventBenefit.getTotalDiscountPrice();
+
+        //then
+        assertThat(totalDiscountPrice).isEqualTo(0);
+    }
+
     private OrderMenu createOrderMenu(Menu menu, int amount) {
         return new OrderMenu(menu, amount);
     }
