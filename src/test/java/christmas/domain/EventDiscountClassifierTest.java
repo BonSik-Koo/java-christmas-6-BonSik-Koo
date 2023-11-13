@@ -6,7 +6,7 @@ import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class EventBenefitClassifierTest {
+class EventDiscountClassifierTest {
 
     @DisplayName("날짜와 주문 메뉴에 받을 수 있는 이벤트 혜택을 선별한다.")
     @Test
@@ -22,7 +22,7 @@ class EventBenefitClassifierTest {
         OrderMenus orderMenus = new OrderMenus(menus);
 
         //when
-        List<EventBenefit> eventBenefits = EventBenefitClassifier.generateEventBenefits(date, orderMenus);
+        List<EventDiscount> eventBenefits = EventDiscountClassifier.generateEventBenefits(date, orderMenus);
 
         //then
         assertThat(eventBenefits).hasSize(3);
@@ -41,7 +41,7 @@ class EventBenefitClassifierTest {
         OrderMenus orderMenus = new OrderMenus(menus);
 
         //when
-        List<EventBenefit> eventBenefits = EventBenefitClassifier.generateEventBenefits(date, orderMenus);
+        List<EventDiscount> eventBenefits = EventDiscountClassifier.generateEventBenefits(date, orderMenus);
 
         //then
         assertThat(eventBenefits).isEmpty();
