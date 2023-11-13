@@ -9,4 +9,8 @@ public class EventDiscount {
         this.discountPrice = discountType.calculate(target);
     }
 
+    public int getDiscountPrice() {
+        return discountPrice;
+    }
+
 }

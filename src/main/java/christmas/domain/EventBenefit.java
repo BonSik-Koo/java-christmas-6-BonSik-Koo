@@ -30,4 +30,10 @@ public class EventBenefit {
         return Menu.NONE;
     }
 
+    public int getTotalDiscountPrice() {
+        return eventDiscounts.stream()
+                .mapToInt(EventDiscount::getDiscountPrice)
+                .sum();
+    }
+
 }
