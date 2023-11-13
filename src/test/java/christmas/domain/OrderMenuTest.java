@@ -24,7 +24,7 @@ class OrderMenuTest {
                 .hasMessage(ExceptionMessage.INVALID_ORDER.getMessage());
     }
 
-    @DisplayName("주문한 메뉴의 카테고리가 음료인지 확인한다.")
+    @DisplayName("주문한 메뉴가 음료 메뉴인지 확인한다.")
     @Test
     void isDrinkMenu() {
         //given
@@ -32,6 +32,32 @@ class OrderMenuTest {
 
         //when
         boolean result = orderMenu.isDrinkMenu();
+
+        //then
+        assertThat(result).isTrue();
+    }
+
+    @DisplayName("주문한 메뉴가 디저트 메뉴인지 확인한다.")
+    @Test
+    void isDessertMenu() {
+        //given
+        OrderMenu orderMenu = createOrderMenu(Menu.ICE_CREAM, 1);
+
+        //when
+        boolean result = orderMenu.isDessertMenu();
+
+        //then
+        assertThat(result).isTrue();
+    }
+
+    @DisplayName("주문한 메뉴가 메인 메뉴인지 확인한다.")
+    @Test
+    void isMainMenu() {
+        //given
+        OrderMenu orderMenu = createOrderMenu(Menu.T_BONE_STEAK, 4);
+
+        //when
+        boolean result = orderMenu.isMainMenu();
 
         //then
         assertThat(result).isTrue();

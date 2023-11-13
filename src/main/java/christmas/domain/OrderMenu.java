@@ -33,6 +33,16 @@ public class OrderMenu {
         return category.equals(Category.DRINK);
     }
 
+    public boolean isDessertMenu() {
+        Category category = Category.findCategoryBy(menu);
+        return category.equals(Category.DESSERT);
+    }
+
+    public boolean isMainMenu() {
+        Category category = Category.findCategoryBy(menu);
+        return category.equals(Category.MAIN);
+    }
+
     public int calculatePrice() {
         return menu.getPrice() * amount;
     }

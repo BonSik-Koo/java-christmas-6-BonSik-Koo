@@ -69,13 +69,50 @@ class OrderMenusTest {
         );
         OrderMenus orderMenus = new OrderMenus(menus);
 
-        final int predictionTotalPrice = (champagne.getPrice() * champagneAmount) + (iceCream.getPrice() * iceCreamAmount);
+        final int predictionTotalPrice =
+                (champagne.getPrice() * champagneAmount) + (iceCream.getPrice() * iceCreamAmount);
 
         //when
         int totalPrice = orderMenus.calculateTotalPrice();
 
         //then
         assertThat(totalPrice).isEqualTo(predictionTotalPrice);
+    }
+
+    @DisplayName("주문한 메뉴에서 디저트 메뉴의 개수를 찾는다.")
+    @Test
+    void findDessertMenuCount() {
+        //given
+        List<OrderMenu> menus = List.of(
+                createOrderMenu(Menu.ICE_CREAM, 1),
+                createOrderMenu(Menu.T_BONE_STEAK, 2),
+                createOrderMenu(Menu.CHOCOLATE_CAKE, 3)
+        );
+        OrderMenus orderMenus = new OrderMenus(menus);
+
+        //when
+        int dessertMenuCount = orderMenus.getDessertMenuCount();
+
+        //then
+        assertThat(dessertMenuCount).isEqualTo(2);
+    }
+
+    @DisplayName("주문한 메뉴에서 메인 메뉴의 개수를 찾는다.")
+    @Test
+    void findMainMenuCount() {
+        //given
+        List<OrderMenu> menus = List.of(
+                createOrderMenu(Menu.ICE_CREAM, 1),
+                createOrderMenu(Menu.T_BONE_STEAK, 2),
+                createOrderMenu(Menu.ZERO_COLA, 1)
+        );
+        OrderMenus orderMenus = new OrderMenus(menus);
+
+        //when
+        int mainMenuCount = orderMenus.getMainMenuCount();
+
+        //then
+        assertThat(mainMenuCount).isEqualTo(1);
     }
 
     private OrderMenu createOrderMenu(Menu menu, int amount) {

@@ -20,10 +20,24 @@ public class OrderMenus {
         this.orderMenus = orderMenus;
     }
 
-    public int calculateTotalPrice(){
+    public int calculateTotalPrice() {
         return orderMenus.stream()
                 .mapToInt(OrderMenu::calculatePrice)
                 .sum();
+    }
+
+    public int getDessertMenuCount() {
+        return orderMenus.stream()
+                .filter(OrderMenu::isDessertMenu)
+                .toList()
+                .size();
+    }
+
+    public int getMainMenuCount() {
+        return orderMenus.stream()
+                .filter(OrderMenu::isMainMenu)
+                .toList()
+                .size();
     }
 
     private void validateMenuCount(List<OrderMenu> orderMenus) {
