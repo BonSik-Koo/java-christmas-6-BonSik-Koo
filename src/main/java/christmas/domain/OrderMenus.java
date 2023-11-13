@@ -26,14 +26,14 @@ public class OrderMenus {
                 .sum();
     }
 
-    public int getDessertMenuCount() {
+    public int getTotalDessertMenuCount() {
         return orderMenus.stream()
                 .filter(OrderMenu::isDessertMenu)
                 .toList()
                 .size();
     }
 
-    public int getMainMenuCount() {
+    public int getTotalMainMenuCount() {
         return orderMenus.stream()
                 .filter(OrderMenu::isMainMenu)
                 .toList()

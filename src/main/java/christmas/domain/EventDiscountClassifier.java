@@ -29,7 +29,7 @@ public class EventDiscountClassifier {
 
     private static void addWeekDayBenefit(List<EventDiscount> benefits, EventDiscountType type, OrderMenus orderMenus) {
         if (type.equals(EventDiscountType.WEEKDAY)) {
-            int dessertMenuCount = orderMenus.getDessertMenuCount();
+            int dessertMenuCount = orderMenus.getTotalDessertMenuCount();
             if (dessertMenuCount >= MIN_DISCOUNT_MENU_COUNT) {
                 EventDiscount benefit = new EventDiscount(type, dessertMenuCount);
                 benefits.add(benefit);
@@ -39,7 +39,7 @@ public class EventDiscountClassifier {
 
     private static void addWeekEndBenefit(List<EventDiscount> benefits, EventDiscountType type, OrderMenus orderMenus) {
         if (type.equals(EventDiscountType.WEEKEND)) {
-            int mainMenuCount = orderMenus.getMainMenuCount();
+            int mainMenuCount = orderMenus.getTotalMainMenuCount();
             if (mainMenuCount >= MIN_DISCOUNT_MENU_COUNT) {
                 EventDiscount benefit = new EventDiscount(type, mainMenuCount);
                 benefits.add(benefit);

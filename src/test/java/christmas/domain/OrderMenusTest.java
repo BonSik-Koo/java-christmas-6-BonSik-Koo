@@ -91,7 +91,7 @@ class OrderMenusTest {
         OrderMenus orderMenus = new OrderMenus(menus);
 
         //when
-        int dessertMenuCount = orderMenus.getDessertMenuCount();
+        int dessertMenuCount = orderMenus.getTotalDessertMenuCount();
 
         //then
         assertThat(dessertMenuCount).isEqualTo(2);
@@ -109,7 +109,7 @@ class OrderMenusTest {
         OrderMenus orderMenus = new OrderMenus(menus);
 
         //when
-        int mainMenuCount = orderMenus.getMainMenuCount();
+        int mainMenuCount = orderMenus.getTotalMainMenuCount();
 
         //then
         assertThat(mainMenuCount).isEqualTo(1);
