@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EventBenefitClassifier {
+    private final static int MIN_DISCOUNT_MENU_COUNT = 1;
+
     public static List<EventBenefit> generateEventBenefits(Date date, OrderMenus orderMenus) {
         List<EventBenefit> benefits = new ArrayList<>();
 
@@ -28,16 +30,20 @@ public class EventBenefitClassifier {
     private static void addWeekDayBenefit(List<EventBenefit> benefits, EventDiscountType type, OrderMenus orderMenus) {
         if (type.equals(EventDiscountType.WEEKDAY)) {
             int dessertMenuCount = orderMenus.getDessertMenuCount();
-            EventBenefit benefit = new EventBenefit(type, dessertMenuCount);
-            benefits.add(benefit);
+            if (dessertMenuCount >= MIN_DISCOUNT_MENU_COUNT) {
+                EventBenefit benefit = new EventBenefit(type, dessertMenuCount);
+                benefits.add(benefit);
+            }
         }
     }
 
     private static void addWeekEndBenefit(List<EventBenefit> benefits, EventDiscountType type, OrderMenus orderMenus) {
         if (type.equals(EventDiscountType.WEEKEND)) {
             int mainMenuCount = orderMenus.getMainMenuCount();
-            EventBenefit benefit = new EventBenefit(type, mainMenuCount);
-            benefits.add(benefit);
+            if (mainMenuCount >= MIN_DISCOUNT_MENU_COUNT) {
+                EventBenefit benefit = new EventBenefit(type, mainMenuCount);
+                benefits.add(benefit);
+            }
         }
     }
 
