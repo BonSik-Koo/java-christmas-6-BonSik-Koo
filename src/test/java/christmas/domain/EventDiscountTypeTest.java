@@ -5,13 +5,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class DiscountTypeTest {
+class EventDiscountTypeTest {
 
     @DisplayName("크리스마스 이벤트 할인 정책에 따라 할인 금액을 계산한다.")
     @Test
     void calculateDiscountPriceByChristmasDiscountType() {
         //given
-        final DiscountType type = DiscountType.CHRISTMAS;
+        final EventDiscountType type = EventDiscountType.CHRISTMAS;
         final int diffDay = 3;
         final int predictionResult = 1000 + (100 * diffDay);
 
@@ -26,7 +26,7 @@ class DiscountTypeTest {
     @Test
     void calculateDiscountPriceByWeekDayDiscountType() {
         //given
-        final DiscountType type = DiscountType.WEEKDAY;
+        final EventDiscountType type = EventDiscountType.WEEKDAY;
         final int dessertMenuCount = 3;
         final int predictionResult = (2023 * dessertMenuCount);
 
@@ -41,7 +41,7 @@ class DiscountTypeTest {
     @Test
     void calculateDiscountPriceByWeekEndDiscountType() {
         //given
-        final DiscountType type = DiscountType.WEEKEND;
+        final EventDiscountType type = EventDiscountType.WEEKEND;
         final int MainMenuCount = 3;
         final int predictionResult = (2023 * MainMenuCount);
 
@@ -56,7 +56,7 @@ class DiscountTypeTest {
     @Test
     void calculateDiscountPriceBySpecialDiscountType() {
         //given
-        final DiscountType type = DiscountType.SPECIAL;
+        final EventDiscountType type = EventDiscountType.SPECIAL;
 
         //when
         int disCountPrice = type.calculate(0);
