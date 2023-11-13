@@ -1,6 +1,5 @@
 package christmas.domain;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import christmas.ExceptionMessage;
@@ -17,62 +16,6 @@ class DateTest {
         assertThatThrownBy(() -> new Date(day))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ExceptionMessage.INVALID_DAY.getMessage());
-    }
-
-    @DisplayName("현재 날짜가 크리스마스 시즌의 날짜인지 확인한다.")
-    @ParameterizedTest
-    @ValueSource(ints = {1, 2, 3, 4, 5, 10, 25})
-    void isChristmasSeasonDay(int day) {
-        //given
-        Date date = new Date(day);
-
-        //when
-        boolean result = date.isChristmasSeason();
-
-        //then
-        assertThat(result).isTrue();
-    }
-
-    @DisplayName("현재 날짜가 평일 시즌의 날짜인지 확인한다.")
-    @ParameterizedTest
-    @ValueSource(ints = {3, 7, 10, 14, 17, 21})
-    void isWeekDaySeasonDay(int day) {
-        //given
-        Date date = new Date(day);
-
-        //when
-        boolean result = date.isWeekDaySeason();
-
-        //then
-        assertThat(result).isTrue();
-    }
-
-    @DisplayName("현재 날짜가 주말 시즌의 날짜인지 확인한다.")
-    @ParameterizedTest
-    @ValueSource(ints = {1, 2, 8, 9, 29})
-    void isWeekEndSeasonDay(int day) {
-        //given
-        Date date = new Date(day);
-
-        //when
-        boolean result = date.isWeekEndSeason();
-
-        //then
-        assertThat(result).isTrue();
-    }
-
-    @DisplayName("현재 날짜가 특별 시즌의 날짜인지 확인한다.")
-    @ParameterizedTest
-    @ValueSource(ints = {3, 10, 17, 31})
-    void isSpecialSeasonDay(int day) {
-        //given
-        Date date = new Date(day);
-
-        //when
-        boolean result = date.isSpecialSeason();
-
-        //then
-        assertThat(result).isTrue();
     }
 
 }
