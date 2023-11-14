@@ -18,8 +18,11 @@ class EventCalendarTest {
         List<EventDiscountType> eventDiscountTypes = EventCalendar.findEventDiscountTypes(day);
 
         //then
-        assertThat(eventDiscountTypes).contains(
-                EventDiscountType.CHRISTMAS, EventDiscountType.WEEKDAY, EventDiscountType.SPECIAL
+        assertThat(eventDiscountTypes).containsExactly(
+                EventDiscountType.CHRISTMAS,
+                EventDiscountType.WEEKDAY,
+                EventDiscountType.SPECIAL,
+                EventDiscountType.PRESENT
         );
     }
 

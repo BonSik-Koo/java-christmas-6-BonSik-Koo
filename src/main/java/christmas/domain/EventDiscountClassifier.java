@@ -5,6 +5,7 @@ import java.util.List;
 
 public class EventDiscountClassifier {
     private final static int MIN_DISCOUNT_MENU_COUNT = 1;
+    private final static int PRESENT_MENU_STANDARD_PRICE = 120000;
 
     public static List<EventDiscount> generateEventBenefits(Date date, OrderMenus orderMenus) {
         List<EventDiscount> benefits = new ArrayList<>();
@@ -15,6 +16,7 @@ public class EventDiscountClassifier {
             addWeekDayBenefit(benefits, type, orderMenus);
             addWeekEndBenefit(benefits, type, orderMenus);
             addSpecialBenefit(benefits, type);
+            addPresentBenefit(benefits, type, orderMenus);
         }
         return benefits;
     }
@@ -51,6 +53,16 @@ public class EventDiscountClassifier {
         if (type.equals(EventDiscountType.SPECIAL)) {
             EventDiscount benefit = new EventDiscount(type, 0);
             benefits.add(benefit);
+        }
+    }
+
+    private static void addPresentBenefit(List<EventDiscount> benefits, EventDiscountType type, OrderMenus orderMenus) {
+        if (type.equals(EventDiscountType.PRESENT)) {
+            int totalOrderPrice = orderMenus.calculateTotalPrice();
+            if (totalOrderPrice >= PRESENT_MENU_STANDARD_PRICE) {
+                EventDiscount benefit = new EventDiscount(type, 0);
+                benefits.add(benefit);
+            }
         }
     }
 

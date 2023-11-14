@@ -2,6 +2,7 @@ package christmas.domain;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public enum EventCalendar {
     CHRISTMAS(
@@ -16,7 +17,10 @@ public enum EventCalendar {
     ),
     SPECIAL(EventDiscountType.SPECIAL,
             List.of(3, 10, 17, 24, 25, 31)
-    );
+    ),
+    PRESENT(EventDiscountType.SPECIAL,
+            List.of());
+
     private final EventDiscountType discountType;
     private final List<Integer> days;
 
@@ -26,10 +30,13 @@ public enum EventCalendar {
     }
 
     public static List<EventDiscountType> findEventDiscountTypes(int day) {
-        return Arrays.stream(EventCalendar.values())
+        List<EventDiscountType> discountTypes = Arrays.stream(EventCalendar.values())
                 .filter(e -> e.days.contains(day))
                 .map(e -> e.discountType)
-                .toList();
+                .collect(Collectors.toList());
+
+        discountTypes.add(EventDiscountType.PRESENT); //날짜 상관없이 증정 이벤트 참여는 가능
+        return discountTypes;
     }
 
 }

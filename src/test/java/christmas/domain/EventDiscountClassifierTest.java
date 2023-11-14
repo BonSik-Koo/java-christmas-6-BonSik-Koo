@@ -12,7 +12,7 @@ class EventDiscountClassifierTest {
     @Test
     void generateEventBenefitsByDateAndOrderMenus() {
         //given
-        Date date = new Date(10); // 크리스마스, 평일, 스페셜 할인
+        Date date = new Date(10); // 크리스마스, 평일, 스페셜 할인, 증정 이벤트
 
         List<OrderMenu> menus = List.of(
                 createOrderMenu(Menu.ICE_CREAM, 1),
@@ -25,7 +25,7 @@ class EventDiscountClassifierTest {
         List<EventDiscount> eventBenefits = EventDiscountClassifier.generateEventBenefits(date, orderMenus);
 
         //then
-        assertThat(eventBenefits).hasSize(3);
+        assertThat(eventBenefits).hasSize(4);
     }
 
     @DisplayName("날짜와 주문 메뉴에 받을 수 있는 이벤트 혜택이 하나도 존재하지 않는다.")

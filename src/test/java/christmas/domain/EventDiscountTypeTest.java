@@ -65,4 +65,17 @@ class EventDiscountTypeTest {
         assertThat(disCountPrice).isEqualTo(1000);
     }
 
+    @DisplayName("증정 이벤트 할인 정책에 따라 할인 금액을 계산한다.")
+    @Test
+    void calculateDiscountPriceByPresentDiscountType() {
+        //given
+        final EventDiscountType type = EventDiscountType.PRESENT;
+
+        //when
+        int disCountPrice = type.calculate(0);
+
+        //then
+        assertThat(disCountPrice).isEqualTo(25000);
+    }
+
 }

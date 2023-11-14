@@ -13,4 +13,8 @@ public class EventDiscount {
         return discountPrice;
     }
 
+    public boolean isPresentDiscountType() {
+        return discountType.equals(EventDiscountType.PRESENT);
+    }
+
 }
