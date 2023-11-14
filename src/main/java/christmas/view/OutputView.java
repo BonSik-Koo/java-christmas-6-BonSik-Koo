@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 
 public class OutputView {
     private final static String EVENT_START_MESSAGE = "안녕하세요! 우테코 식당 12월 이벤트 플래너입니다.";
-    private final static String EVENT_BENEFIT_PREVIEW_MESSAGE = "12월 26일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!";
+    private final static String EVENT_BENEFIT_PREVIEW_MESSAGE = "12월 %d일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!";
     private final static String ORDER_MENU_MESSAGE = "<주문 메뉴>";
     private final static String ORDER_TOTAL_PRICE_MESSAGE = "<할인 전 총주문 금액>";
     private final static String PRESENT_MENU_MESSAGE = "<증정 메뉴>";
@@ -37,8 +37,9 @@ public class OutputView {
         System.out.println(EVENT_START_MESSAGE);
     }
 
-    public void printEventBenefitPreviewMessage() {
-        System.out.println(EVENT_BENEFIT_PREVIEW_MESSAGE + CRLF);
+    public void printEventBenefitPreview(int day) {
+        String result = String.format(EVENT_BENEFIT_PREVIEW_MESSAGE, day);
+        System.out.println(result);
     }
 
     public void printOrderInfo(OrderMenus orderMenus) {
