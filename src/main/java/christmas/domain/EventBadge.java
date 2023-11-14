@@ -23,4 +23,8 @@ public enum EventBadge {
                 .orElse(EventBadge.NONE);
     }
 
+    public String getName(){
+        return name;
+    }
+
 }

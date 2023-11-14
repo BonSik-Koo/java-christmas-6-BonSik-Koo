@@ -1,5 +1,6 @@
 package christmas.view;
 
+import christmas.domain.EventBadge;
 import christmas.domain.EventBenefit;
 import christmas.domain.EventDiscount;
 import christmas.domain.OrderMenu;
@@ -17,6 +18,7 @@ public class OutputView {
     private final static String BENEFIT_INFO_MESSAGE = "<혜택 내역>";
     private final static String TOTAL_BENEFIT_PRICE_MESSAGE = "<총혜택 금액>";
     private final static String PAYMENT_PRICE_MESSAGE = "<할인 후 예상 결제 금액>";
+    private final static String EVENT_BADGE_MESSAGE = "<12월 이벤트 배지>";
     private final static String PRESENT_MENU = "삼페인 1개";
     private final static String CRLF = "\n";
     private final static String SPACE = " ";
@@ -66,6 +68,11 @@ public class OutputView {
     public void printPaymentPrice(int paymentPrice) {
         System.out.println(CRLF + PAYMENT_PRICE_MESSAGE);
         System.out.println(df.format(paymentPrice) + WON);
+    }
+
+    public void printEventBadge(String name) {
+        System.out.println(CRLF + EVENT_BADGE_MESSAGE);
+        System.out.println(name);
     }
 
     private String convertMenusToString(OrderMenus orderMenus) {
