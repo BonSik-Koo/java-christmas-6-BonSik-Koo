@@ -1,6 +1,7 @@
 # 구현할 기능 목록
 ## UI
 * [ ] 방문 날짜를 입력 받는다.
+  * 숫자가 아닐 경우 `[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.`라는 에러 메시지를 보여준다.
   * 사용자가 입력하는 값은 `camp.nextstep.edu.missionutils.Console`의 `readLine()`을 활용한다.
 * [ ] 주문할 메뉴와 개수를 입력 받는다.
   * 사용자가 입력하는 값은 `camp.nextstep.edu.missionutils.Console`의 `readLine()`을 활용한다.
