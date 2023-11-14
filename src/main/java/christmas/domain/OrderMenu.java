@@ -33,14 +33,18 @@ public class OrderMenu {
         return category.equals(Category.DRINK);
     }
 
-    public boolean isDessertMenu() {
-        Category category = Category.findCategoryBy(menu);
-        return category.equals(Category.DESSERT);
+    public int getDessertMenuCount() {
+        if (Category.isMenuInCategory(menu, Category.DESSERT)) {
+            return amount;
+        }
+        return 0;
     }
 
-    public boolean isMainMenu() {
-        Category category = Category.findCategoryBy(menu);
-        return category.equals(Category.MAIN);
+    public int getMainMenuCount() {
+        if (Category.isMenuInCategory(menu, Category.MAIN)) {
+            return amount;
+        }
+        return 0;
     }
 
     public int calculatePrice() {

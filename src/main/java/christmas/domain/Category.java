@@ -25,4 +25,10 @@ public enum Category {
                 .orElseThrow(() -> new IllegalArgumentException(NOT_EXIST_CATEGORY.getMessage()));
     }
 
+    public static boolean isMenuInCategory(Menu menu, Category category) {
+        return Arrays.stream(Category.values())
+                .filter(c -> c.menus.contains(menu))
+                .anyMatch(c -> c.equals(category));
+    }
+
 }

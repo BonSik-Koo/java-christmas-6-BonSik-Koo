@@ -12,13 +12,13 @@ class EventBenefitTest {
     @Test
     void calculateTotalDiscountPrice() {
         //given
-        final int predictionTotalPrice = 1900 + 4046 + 1000;
+        final int predictionTotalPrice = 1900 + 6069 + 1000;
         Date date = new Date(10); // 크리스마스, 평일, 스페셜 할인
 
         List<OrderMenu> menus = List.of(
                 createOrderMenu(Menu.ICE_CREAM, 1),
                 createOrderMenu(Menu.T_BONE_STEAK, 2),
-                createOrderMenu(Menu.CHOCOLATE_CAKE, 1)
+                createOrderMenu(Menu.CHOCOLATE_CAKE, 2)
         );
         OrderMenus orderMenus = new OrderMenus(menus);
 
@@ -56,7 +56,7 @@ class EventBenefitTest {
     @Test
     void calculateTotalBenefitPrice() {
         //given
-        final int predictionTotalPrice = (2023 * 2) + 1000 + 25000;
+        final int predictionTotalPrice = (2023 * 20) + 1000 + 25000;
         Date date = new Date(31); // 평일, 특별 할인
 
         List<OrderMenu> menus = List.of(

@@ -37,30 +37,30 @@ class OrderMenuTest {
         assertThat(result).isTrue();
     }
 
-    @DisplayName("주문한 메뉴가 디저트 메뉴인지 확인한다.")
+    @DisplayName("주문한 메뉴가 디저트 메뉴일 경우 수량을 반환한다.")
     @Test
-    void isDessertMenu() {
+    void getDessertMenuCount() {
         //given
-        OrderMenu orderMenu = createOrderMenu(Menu.ICE_CREAM, 1);
+        OrderMenu orderMenu = createOrderMenu(Menu.ICE_CREAM, 3);
 
         //when
-        boolean result = orderMenu.isDessertMenu();
+        int dessertMenuCount = orderMenu.getDessertMenuCount();
 
         //then
-        assertThat(result).isTrue();
+        assertThat(dessertMenuCount).isEqualTo(3);
     }
 
-    @DisplayName("주문한 메뉴가 메인 메뉴인지 확인한다.")
+    @DisplayName("주문한 메뉴가 메인 메뉴일 경우 수량을 반환한다.")
     @Test
-    void isMainMenu() {
+    void getMainMenuCount() {
         //given
         OrderMenu orderMenu = createOrderMenu(Menu.T_BONE_STEAK, 4);
 
         //when
-        boolean result = orderMenu.isMainMenu();
+        int mainMenuCount = orderMenu.getMainMenuCount();
 
         //then
-        assertThat(result).isTrue();
+        assertThat(mainMenuCount).isEqualTo(4);
     }
 
     @DisplayName("주문한 메뉴의 가격을 계산한다.")

@@ -94,7 +94,7 @@ class OrderMenusTest {
         int dessertMenuCount = orderMenus.getTotalDessertMenuCount();
 
         //then
-        assertThat(dessertMenuCount).isEqualTo(2);
+        assertThat(dessertMenuCount).isEqualTo(4);
     }
 
     @DisplayName("주문한 메뉴에서 메인 메뉴의 개수를 찾는다.")
@@ -112,7 +112,7 @@ class OrderMenusTest {
         int mainMenuCount = orderMenus.getTotalMainMenuCount();
 
         //then
-        assertThat(mainMenuCount).isEqualTo(1);
+        assertThat(mainMenuCount).isEqualTo(2);
     }
 
     private OrderMenu createOrderMenu(Menu menu, int amount) {

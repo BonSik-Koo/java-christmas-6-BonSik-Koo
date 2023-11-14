@@ -20,4 +20,18 @@ class CategoryTest {
         assertThat(category).isEqualByComparingTo(Category.DRINK);
     }
 
+    @DisplayName("해당 메뉴가 특정 카테고리에 속해있는지를 판단한다.")
+    @Test
+    void isMenuInCategory() {
+        //given
+        final Menu menu = Menu.CHAMPAGNE;
+        final Category category = Category.DRINK;
+
+        //when
+        boolean result = Category.isMenuInCategory(menu, category);
+
+        //then
+        assertThat(result).isTrue();
+    }
+
 }
