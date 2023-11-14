@@ -76,6 +76,10 @@ public class OutputView {
         System.out.println(name);
     }
 
+    public void printExceptionMessage(String message){
+        System.out.println(message);
+    }
+
     private String convertMenusToString(OrderMenus orderMenus) {
         List<OrderMenu> menus = orderMenus.getOrderMenus();
         return menus.stream()
