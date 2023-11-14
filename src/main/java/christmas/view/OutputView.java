@@ -1,5 +1,7 @@
 package christmas.view;
 
+import christmas.domain.EventBenefit;
+import christmas.domain.EventDiscount;
 import christmas.domain.OrderMenu;
 import christmas.domain.OrderMenus;
 import java.text.DecimalFormat;
@@ -11,10 +13,17 @@ public class OutputView {
     private final static String EVENT_BENEFIT_PREVIEW_MESSAGE = "12월 26일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!";
     private final static String ORDER_MENU_MESSAGE = "<주문 메뉴>";
     private final static String ORDER_TOTAL_PRICE_MESSAGE = "<할인 전 총주문 금액>";
+    private final static String PRESENT_MENU_MESSAGE = "<증정 메뉴>";
+    private final static String BENEFIT_INFO_MESSAGE = "<혜택 내역>";
+    private final static String TOTAL_BENEFIT_PRICE_MESSAGE = "<총혜택 금액>";
+    private final static String PRESENT_MENU = "삼페인 1개";
     private final static String CRLF = "\n";
     private final static String SPACE = " ";
     private final static String COUNT = "개";
     private final static String WON = "원";
+    private final static String MINUS = "-";
+    private final static String COLON = ": ";
+    private final static String NONE = "없음";
     private final DecimalFormat df;
 
     public OutputView() {
@@ -39,11 +48,43 @@ public class OutputView {
         System.out.println(df.format(totalPrice) + WON);
     }
 
+    public void printBenefitInfo(EventBenefit eventBenefit) {
+        System.out.println(CRLF + PRESENT_MENU_MESSAGE);
+        String presentMenuInfo = getPresentMenuMessage(eventBenefit);
+        System.out.println(presentMenuInfo);
+
+        System.out.println(CRLF + BENEFIT_INFO_MESSAGE);
+        String benefitInfo = getBenefitMessage(eventBenefit);
+        System.out.println(benefitInfo);
+
+        System.out.println(CRLF + TOTAL_BENEFIT_PRICE_MESSAGE);
+        int totalBenefitPrice = eventBenefit.getTotalBenefitPrice();
+        System.out.println(MINUS + df.format(totalBenefitPrice) + WON);
+    }
+
     private String convertMenusToString(OrderMenus orderMenus) {
         List<OrderMenu> menus = orderMenus.getOrderMenus();
         return menus.stream()
                 .map(o -> o.getMenuName() + SPACE + o.getAmount() + COUNT)
                 .collect(Collectors.joining(CRLF));
+    }
+
+    private String getBenefitMessage(EventBenefit eventBenefit) {
+        List<EventDiscount> eventDiscounts = eventBenefit.getEventDiscounts();
+
+        if (eventDiscounts.isEmpty()) {
+            return NONE;
+        }
+        return eventDiscounts.stream()
+                .map(e -> e.getEventDiscountTypeName() + COLON + MINUS + df.format(e.getDiscountPrice()) + WON)
+                .collect(Collectors.joining(CRLF));
+    }
+
+    private String getPresentMenuMessage(EventBenefit eventBenefit) {
+        if (eventBenefit.hasPresentPresentDiscount()) {
+            return PRESENT_MENU;
+        }
+        return NONE;
     }
 
 }

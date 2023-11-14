@@ -21,4 +21,8 @@ public enum EventDiscountType {
         return function.apply(target);
     }
 
+    public String getName() {
+        return name;
+    }
+
 }

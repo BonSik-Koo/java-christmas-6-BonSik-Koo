@@ -13,6 +13,10 @@ public class EventDiscount {
         return discountPrice;
     }
 
+    public String getEventDiscountTypeName() {
+        return discountType.getName();
+    }
+
     public boolean isPresentDiscountType() {
         return discountType.equals(EventDiscountType.PRESENT);
     }

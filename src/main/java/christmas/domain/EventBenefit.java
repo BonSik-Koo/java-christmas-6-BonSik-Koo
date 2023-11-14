@@ -1,6 +1,7 @@
 package christmas.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class EventBenefit {
@@ -30,6 +31,15 @@ public class EventBenefit {
         return eventDiscounts.stream()
                 .mapToInt(EventDiscount::getDiscountPrice)
                 .sum();
+    }
+
+    public boolean hasPresentPresentDiscount() {
+        return eventDiscounts.stream()
+                .anyMatch(EventDiscount::isPresentDiscountType);
+    }
+
+    public List<EventDiscount> getEventDiscounts() {
+        return Collections.unmodifiableList(eventDiscounts);
     }
 
 }

@@ -74,6 +74,26 @@ class EventBenefitTest {
         assertThat(totalBenefitPrice).isEqualTo(predictionTotalPrice);
     }
 
+    @DisplayName("할인 혜택 중 증정 할인 헤택을 가지고 있는지 확인한다.")
+    @Test
+    void hasPresentPresentDiscount() {
+        //given
+        Date date = new Date(28);
+
+        List<OrderMenu> menus = List.of(
+                createOrderMenu(Menu.T_BONE_STEAK, 10)
+        );
+        OrderMenus orderMenus = new OrderMenus(menus);
+
+        EventBenefit eventBenefit = new EventBenefit(date, orderMenus);
+
+        //when
+        boolean result = eventBenefit.hasPresentPresentDiscount();
+
+        //then
+        assertThat(result).isTrue();
+    }
+
     private OrderMenu createOrderMenu(Menu menu, int amount) {
         return new OrderMenu(menu, amount);
     }
