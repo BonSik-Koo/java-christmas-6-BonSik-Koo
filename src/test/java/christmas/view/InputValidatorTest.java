@@ -18,4 +18,13 @@ class InputValidatorTest {
                 .hasMessage(ExceptionMessage.INVALID_DAY.getMessage());
     }
 
+    @DisplayName("문자열이 메뉴 형식에 맞지 않을 경우 예외가 발생한다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"타피스-1,", "제로콜라+1", "타파스--1", "타파스-1,제로콜라--1", "a타파스-1", "", "타파스", "타파스-", "타파스-a"})
+    void validateMenuPattern(String input) {
+        assertThatThrownBy(() -> InputValidator.validateMenuPattern(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ExceptionMessage.INVALID_ORDER.getMessage());
+    }
+
 }
