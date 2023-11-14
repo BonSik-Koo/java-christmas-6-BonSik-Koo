@@ -6,7 +6,7 @@ import java.util.Arrays;
 
 public enum Menu {
     MUSHROOM_SOUP("양송이수프", 6_000),
-    TABAS("타바스", 5_500),
+    TABAS("타파스", 5_500),
     CAESAR_SALAD("시저샐러드", 8_000),
 
     T_BONE_STEAK("티본스테이크", 55_000),
