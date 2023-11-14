@@ -7,10 +7,10 @@ public class OrderMenu {
     private final Menu menu;
     private final int amount;
 
-    public OrderMenu(final Menu menu, final int amount) {
+    public OrderMenu(final String menu, final int amount) {
         validateAmount(amount);
 
-        this.menu = menu;
+        this.menu = Menu.findMenuBy(menu);
         this.amount = amount;
     }
 
@@ -28,13 +28,8 @@ public class OrderMenu {
         return menu;
     }
 
-    public String getMenuName(){
+    public String getMenuName() {
         return menu.getName();
-    }
-
-    public boolean isDrinkMenu() {
-        Category category = Category.findCategoryBy(menu);
-        return category.equals(Category.DRINK);
     }
 
     public int getDessertMenuCount() {

@@ -4,61 +4,45 @@ import christmas.domain.Date;
 import christmas.domain.EventBadge;
 import christmas.domain.EventBenefit;
 import christmas.domain.EventPanner;
-import christmas.domain.Menu;
-import christmas.domain.OrderMenu;
 import christmas.domain.OrderMenus;
+import christmas.dto.MenuInfo;
 import christmas.view.InputView;
 import christmas.view.OutputView;
-import java.util.ArrayList;
 import java.util.List;
 
-public class EventPannerController {
+public class EventController {
     private final InputView inputView;
     private final OutputView outputView;
     private EventPanner eventPanner;
 
-    public EventPannerController() {
+    public EventController() {
         inputView = new InputView();
         outputView = new OutputView();
     }
 
-    public void reservationOrder() {
-        outputView.printEventStartMessage();
-
-        Date date = createDate();
-        OrderMenus orderMenus = createOrderMenus();
-        eventPanner = new EventPanner(date, orderMenus);
-
-        outputView.printEventBenefitPreview(date.getDay());
+    public void participate() {
+        Date date = inputVisitDate();
+        List<MenuInfo> menus = inputOrderMenuInfo();
+        eventPanner = new EventPanner(date, menus);
     }
 
-    private Date createDate() {
+    private Date inputVisitDate() {
+        outputView.printEventStartMessage();
         try {
             int day = inputView.readDate();
-            Date date = new Date(day);
-            return date;
+            return new Date(day);
         } catch (IllegalArgumentException e) {
             outputView.printExceptionMessage(e.getMessage());
-            return createDate();
+            return inputVisitDate();
         }
     }
 
-    private OrderMenus createOrderMenus() {
+    private List<MenuInfo> inputOrderMenuInfo() {
         try {
-            List<String> inputMenus = inputView.readMenu();
-
-            List<OrderMenu> orderMenus = new ArrayList<>();
-            for (String inputMenu : inputMenus) {
-                String[] split = inputMenu.split("-");
-                Menu menu = Menu.findMenuBy(split[0]);
-                int amount = Integer.parseInt(split[1]);
-                orderMenus.add(new OrderMenu(menu, amount));
-            }
-
-            return new OrderMenus(orderMenus);
+            return inputView.readMenu();
         } catch (IllegalArgumentException e) {
             outputView.printExceptionMessage(e.getMessage());
-            return createOrderMenus();
+            return inputOrderMenuInfo();
         }
     }
 

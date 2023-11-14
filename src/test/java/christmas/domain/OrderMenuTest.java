@@ -19,29 +19,18 @@ class OrderMenuTest {
         final Menu menu = Menu.CHAMPAGNE;
 
         //when & then
-        assertThatThrownBy(() -> new OrderMenu(menu, inputAmount))
+        assertThatThrownBy(() -> new OrderMenu(menu.getName(), inputAmount))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ExceptionMessage.INVALID_ORDER.getMessage());
-    }
-
-    @DisplayName("주문한 메뉴가 음료 메뉴인지 확인한다.")
-    @Test
-    void isDrinkMenu() {
-        //given
-        OrderMenu orderMenu = createOrderMenu(Menu.RED_WINE, 4);
-
-        //when
-        boolean result = orderMenu.isDrinkMenu();
-
-        //then
-        assertThat(result).isTrue();
     }
 
     @DisplayName("주문한 메뉴가 디저트 메뉴일 경우 수량을 반환한다.")
     @Test
     void getDessertMenuCount() {
         //given
-        OrderMenu orderMenu = createOrderMenu(Menu.ICE_CREAM, 3);
+        final Menu menu = Menu.ICE_CREAM;
+        final int amount = 3;
+        OrderMenu orderMenu = createOrderMenu(menu, 3);
 
         //when
         int dessertMenuCount = orderMenu.getDessertMenuCount();
@@ -54,7 +43,9 @@ class OrderMenuTest {
     @Test
     void getMainMenuCount() {
         //given
-        OrderMenu orderMenu = createOrderMenu(Menu.T_BONE_STEAK, 4);
+        final Menu menu = Menu.T_BONE_STEAK;
+        final int amount = 4;
+        OrderMenu orderMenu = createOrderMenu(menu, 4);
 
         //when
         int mainMenuCount = orderMenu.getMainMenuCount();
@@ -80,7 +71,7 @@ class OrderMenuTest {
     }
 
     private OrderMenu createOrderMenu(Menu menu, int amount) {
-        return new OrderMenu(menu, amount);
+        return new OrderMenu(menu.getName(), amount);
     }
 
 }

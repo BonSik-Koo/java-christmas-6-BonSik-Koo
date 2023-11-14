@@ -2,6 +2,7 @@ package christmas.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import christmas.dto.MenuInfo;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -15,10 +16,10 @@ class EventBenefitTest {
         final int predictionTotalPrice = 1900 + 6069 + 1000;
         Date date = new Date(10); // 크리스마스, 평일, 스페셜 할인
 
-        List<OrderMenu> menus = List.of(
-                createOrderMenu(Menu.ICE_CREAM, 1),
-                createOrderMenu(Menu.T_BONE_STEAK, 2),
-                createOrderMenu(Menu.CHOCOLATE_CAKE, 2)
+        List<MenuInfo> menus = List.of(
+                createMenuInfo(Menu.ICE_CREAM, 1),
+                createMenuInfo(Menu.T_BONE_STEAK, 2),
+                createMenuInfo(Menu.CHOCOLATE_CAKE, 2)
         );
         OrderMenus orderMenus = new OrderMenus(menus);
 
@@ -37,9 +38,9 @@ class EventBenefitTest {
         //given
         Date date = new Date(30); // 주말 할인
 
-        List<OrderMenu> menus = List.of(
-                createOrderMenu(Menu.ICE_CREAM, 1),
-                createOrderMenu(Menu.CHOCOLATE_CAKE, 1)
+        List<MenuInfo> menus = List.of(
+                createMenuInfo(Menu.ICE_CREAM, 1),
+                createMenuInfo(Menu.CHOCOLATE_CAKE, 1)
         );
         OrderMenus orderMenus = new OrderMenus(menus);
 
@@ -59,9 +60,9 @@ class EventBenefitTest {
         final int predictionTotalPrice = (2023 * 20) + 1000 + 25000;
         Date date = new Date(31); // 평일, 특별 할인
 
-        List<OrderMenu> menus = List.of(
-                createOrderMenu(Menu.ICE_CREAM, 10),
-                createOrderMenu(Menu.CHOCOLATE_CAKE, 10)
+        List<MenuInfo> menus = List.of(
+                createMenuInfo(Menu.ICE_CREAM, 10),
+                createMenuInfo(Menu.CHOCOLATE_CAKE, 10)
         );
         OrderMenus orderMenus = new OrderMenus(menus);
 
@@ -80,8 +81,8 @@ class EventBenefitTest {
         //given
         Date date = new Date(28);
 
-        List<OrderMenu> menus = List.of(
-                createOrderMenu(Menu.T_BONE_STEAK, 10)
+        List<MenuInfo> menus = List.of(
+                createMenuInfo(Menu.T_BONE_STEAK, 10)
         );
         OrderMenus orderMenus = new OrderMenus(menus);
 
@@ -94,8 +95,8 @@ class EventBenefitTest {
         assertThat(result).isTrue();
     }
 
-    private OrderMenu createOrderMenu(Menu menu, int amount) {
-        return new OrderMenu(menu, amount);
+    private MenuInfo createMenuInfo(Menu menu, int amount) {
+        return new MenuInfo(menu.getName(), amount);
     }
 
 }

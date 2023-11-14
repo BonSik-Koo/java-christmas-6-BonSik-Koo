@@ -1,13 +1,16 @@
 package christmas.domain;
 
+import christmas.dto.MenuInfo;
+import java.util.List;
+
 public class EventPanner {
     private final Date date;
     private final OrderMenus orderMenus;
     private final EventBenefit eventBenefit;
 
-    public EventPanner(Date date, OrderMenus orderMenus) {
+    public EventPanner(Date date, List<MenuInfo> menuInfos) {
         this.date = date;
-        this.orderMenus = orderMenus;
+        this.orderMenus = new OrderMenus(menuInfos);
         this.eventBenefit = new EventBenefit(date, orderMenus);
     }
 
@@ -22,11 +25,11 @@ public class EventPanner {
         return EventBadge.findBadgeBy(totalBenefitPrice);
     }
 
-    public EventBenefit getEventBenefit(){
+    public EventBenefit getEventBenefit() {
         return eventBenefit;
     }
 
-    public OrderMenus getOrderMenus(){
+    public OrderMenus getOrderMenus() {
         return orderMenus;
     }
 

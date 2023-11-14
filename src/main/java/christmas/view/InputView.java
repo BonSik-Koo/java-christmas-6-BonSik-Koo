@@ -1,8 +1,10 @@
 package christmas.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import christmas.dto.MenuInfo;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class InputView {
     private final static String READ_DATE_MESSAGE = "12월 중 식당 예상 방문 날짜는 언제인가요? (숫자만 입력해 주세요!)";
@@ -20,12 +22,19 @@ public class InputView {
         return Integer.parseInt(date);
     }
 
-    public List<String> readMenu() {
+    public List<MenuInfo> readMenu() {
         System.out.println(READ_MENU_MESSAGE);
         String menus = Console.readLine();
         InputValidator.validateMenuPattern(menus);
 
-        return Arrays.asList(menus.split(COMMA_DELIMITER));
+        return toMenuInfos(menus);
+    }
+
+    private List<MenuInfo> toMenuInfos(String menu) {
+        List<String> menus = Arrays.asList(menu.split(COMMA_DELIMITER));
+        return menus.stream()
+                .map(MenuInfo::from)
+                .collect(Collectors.toList());
     }
 
 }

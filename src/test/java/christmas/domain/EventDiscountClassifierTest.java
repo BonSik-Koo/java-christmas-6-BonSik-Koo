@@ -2,6 +2,7 @@ package christmas.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import christmas.dto.MenuInfo;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -14,10 +15,10 @@ class EventDiscountClassifierTest {
         //given
         Date date = new Date(10); // 크리스마스, 평일, 스페셜 할인, 증정 이벤트
 
-        List<OrderMenu> menus = List.of(
-                createOrderMenu(Menu.ICE_CREAM, 1),
-                createOrderMenu(Menu.T_BONE_STEAK, 2),
-                createOrderMenu(Menu.CHOCOLATE_CAKE, 1)
+        List<MenuInfo> menus = List.of(
+                createMenuInfo(Menu.ICE_CREAM, 1),
+                createMenuInfo(Menu.T_BONE_STEAK, 2),
+                createMenuInfo(Menu.CHOCOLATE_CAKE, 1)
         );
         OrderMenus orderMenus = new OrderMenus(menus);
 
@@ -34,9 +35,9 @@ class EventDiscountClassifierTest {
         //given
         Date date = new Date(30); // 주말 할인
 
-        List<OrderMenu> menus = List.of(
-                createOrderMenu(Menu.ICE_CREAM, 1),
-                createOrderMenu(Menu.CHOCOLATE_CAKE, 1)
+        List<MenuInfo> menus = List.of(
+                createMenuInfo(Menu.ICE_CREAM, 1),
+                createMenuInfo(Menu.CHOCOLATE_CAKE, 1)
         );
         OrderMenus orderMenus = new OrderMenus(menus);
 
@@ -47,8 +48,8 @@ class EventDiscountClassifierTest {
         assertThat(eventBenefits).isEmpty();
     }
 
-    private OrderMenu createOrderMenu(Menu menu, int amount) {
-        return new OrderMenu(menu, amount);
+    private MenuInfo createMenuInfo(Menu menu, int amount) {
+        return new MenuInfo(menu.getName(), amount);
     }
 
 }

@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import christmas.ExceptionMessage;
+import christmas.dto.MenuInfo;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -14,9 +15,9 @@ class OrderMenusTest {
     @Test
     void createOrderByExceedMaxMenuAmount() {
         //given
-        List<OrderMenu> orderMenus = List.of(
-                createOrderMenu(Menu.CHAMPAGNE, 15),
-                createOrderMenu(Menu.TABAS, 10)
+        List<MenuInfo> orderMenus = List.of(
+                createMenuInfo(Menu.CHAMPAGNE, 15),
+                createMenuInfo(Menu.TABAS, 10)
         );
 
         //when & then
@@ -29,9 +30,9 @@ class OrderMenusTest {
     @Test
     void createOrderByDuplicationMenu() {
         //given
-        List<OrderMenu> orderMenus = List.of(
-                createOrderMenu(Menu.CHAMPAGNE, 5),
-                createOrderMenu(Menu.CHAMPAGNE, 5)
+        List<MenuInfo> orderMenus = List.of(
+                createMenuInfo(Menu.CHAMPAGNE, 5),
+                createMenuInfo(Menu.CHAMPAGNE, 5)
         );
 
         //when & then
@@ -44,9 +45,9 @@ class OrderMenusTest {
     @Test
     void createOrderByOnlyDrinkMenu() {
         //given
-        List<OrderMenu> orderMenus = List.of(
-                createOrderMenu(Menu.CHAMPAGNE, 5),
-                createOrderMenu(Menu.ZERO_COLA, 4)
+        List<MenuInfo> orderMenus = List.of(
+                createMenuInfo(Menu.CHAMPAGNE, 5),
+                createMenuInfo(Menu.ZERO_COLA, 4)
         );
 
         //when & then
@@ -63,9 +64,9 @@ class OrderMenusTest {
         final int champagneAmount = 3;
         final Menu iceCream = Menu.ICE_CREAM;
         final int iceCreamAmount = 2;
-        List<OrderMenu> menus = List.of(
-                createOrderMenu(champagne, champagneAmount),
-                createOrderMenu(iceCream, iceCreamAmount)
+        List<MenuInfo> menus = List.of(
+                createMenuInfo(champagne, champagneAmount),
+                createMenuInfo(iceCream, iceCreamAmount)
         );
         OrderMenus orderMenus = new OrderMenus(menus);
 
@@ -83,10 +84,10 @@ class OrderMenusTest {
     @Test
     void findDessertMenuCount() {
         //given
-        List<OrderMenu> menus = List.of(
-                createOrderMenu(Menu.ICE_CREAM, 1),
-                createOrderMenu(Menu.T_BONE_STEAK, 2),
-                createOrderMenu(Menu.CHOCOLATE_CAKE, 3)
+        List<MenuInfo> menus = List.of(
+                createMenuInfo(Menu.ICE_CREAM, 1),
+                createMenuInfo(Menu.T_BONE_STEAK, 2),
+                createMenuInfo(Menu.CHOCOLATE_CAKE, 3)
         );
         OrderMenus orderMenus = new OrderMenus(menus);
 
@@ -101,10 +102,10 @@ class OrderMenusTest {
     @Test
     void findMainMenuCount() {
         //given
-        List<OrderMenu> menus = List.of(
-                createOrderMenu(Menu.ICE_CREAM, 1),
-                createOrderMenu(Menu.T_BONE_STEAK, 2),
-                createOrderMenu(Menu.ZERO_COLA, 1)
+        List<MenuInfo> menus = List.of(
+                createMenuInfo(Menu.ICE_CREAM, 1),
+                createMenuInfo(Menu.T_BONE_STEAK, 2),
+                createMenuInfo(Menu.ZERO_COLA, 1)
         );
         OrderMenus orderMenus = new OrderMenus(menus);
 
@@ -115,8 +116,8 @@ class OrderMenusTest {
         assertThat(mainMenuCount).isEqualTo(2);
     }
 
-    private OrderMenu createOrderMenu(Menu menu, int amount) {
-        return new OrderMenu(menu, amount);
+    private MenuInfo createMenuInfo(Menu menu, int amount) {
+        return new MenuInfo(menu.getName(), amount);
     }
 
 }

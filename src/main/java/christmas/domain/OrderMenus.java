@@ -4,6 +4,7 @@ import static christmas.ExceptionMessage.EXCEED_ORDER_MENU_AMOUNT;
 import static christmas.ExceptionMessage.INVALID_ORDER;
 import static christmas.ExceptionMessage.INVALID_ORDER_MENU;
 
+import christmas.dto.MenuInfo;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -13,12 +14,14 @@ public class OrderMenus {
     private final static int MAX_ORDER_MENU_AMOUNT = 20;
     private final List<OrderMenu> orderMenus;
 
-    public OrderMenus(final List<OrderMenu> orderMenus) {
-        validateMenuCount(orderMenus);
-        validateDuplicationMenu(orderMenus);
-        validateOnlyDrinkMenu(orderMenus);
+    public OrderMenus(List<MenuInfo> menuInfos) {
+        validateMenuCount(menuInfos);
+        validateDuplicationMenu(menuInfos);
+        validateOnlyDrinkMenu(menuInfos);
 
-        this.orderMenus = orderMenus;
+        this.orderMenus = menuInfos.stream()
+                .map(m -> new OrderMenu(m.getName(), m.getAmount()))
+                .toList();
     }
 
     public int calculateTotalPrice() {
@@ -43,30 +46,31 @@ public class OrderMenus {
         return Collections.unmodifiableList(orderMenus);
     }
 
-    private void validateMenuCount(List<OrderMenu> orderMenus) {
-        int totalCount = orderMenus.stream()
-                .mapToInt(OrderMenu::getAmount)
+    private void validateMenuCount(List<MenuInfo> menuInfos) {
+        int totalCount = menuInfos.stream()
+                .mapToInt(MenuInfo::getAmount)
                 .sum();
         if (totalCount > MAX_ORDER_MENU_AMOUNT) {
             throw new IllegalArgumentException(EXCEED_ORDER_MENU_AMOUNT.getMessage());
         }
     }
 
-    private void validateDuplicationMenu(List<OrderMenu> orderMenus) {
-        Set<Menu> menus = new HashSet<>();
-        for (OrderMenu orderMenu : orderMenus) {
-            if (!menus.add(orderMenu.getMenu())) {
+    private void validateDuplicationMenu(List<MenuInfo> menuInfos) {
+        Set<String> menus = new HashSet<>();
+        for (MenuInfo menuInfo : menuInfos) {
+            if (!menus.add(menuInfo.getName())) {
                 throw new IllegalArgumentException(INVALID_ORDER.getMessage());
             }
         }
     }
 
-    private void validateOnlyDrinkMenu(List<OrderMenu> orderMenus) {
-        int drinkMenuCount = orderMenus.stream()
-                .filter(OrderMenu::isDrinkMenu)
+    private void validateOnlyDrinkMenu(List<MenuInfo> menuInfos) {
+        int drinkMenuCount = menuInfos.stream()
+                .map(m -> Category.findCategoryBy(m.getName()))
+                .filter(c -> c.equals(Category.DRINK))
                 .toList()
                 .size();
-        if (drinkMenuCount == orderMenus.size()) {
+        if (drinkMenuCount == menuInfos.size()) {
             throw new IllegalArgumentException(INVALID_ORDER_MENU.getMessage());
         }
     }

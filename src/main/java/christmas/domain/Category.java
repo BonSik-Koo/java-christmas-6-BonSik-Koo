@@ -25,6 +25,11 @@ public enum Category {
                 .orElseThrow(() -> new IllegalArgumentException(NOT_EXIST_CATEGORY.getMessage()));
     }
 
+    public static Category findCategoryBy(String menuName) {
+        Menu menu = findMenuBy(menuName);
+        return findCategoryBy(menu);
+    }
+
     public static boolean isMenuInCategory(Menu menu, Category category) {
         return Arrays.stream(Category.values())
                 .filter(c -> c.menus.contains(menu))
