@@ -16,6 +16,7 @@ public class OutputView {
     private final static String PRESENT_MENU_MESSAGE = "<증정 메뉴>";
     private final static String BENEFIT_INFO_MESSAGE = "<혜택 내역>";
     private final static String TOTAL_BENEFIT_PRICE_MESSAGE = "<총혜택 금액>";
+    private final static String PAYMENT_PRICE_MESSAGE = "<할인 후 예상 결제 금액>";
     private final static String PRESENT_MENU = "삼페인 1개";
     private final static String CRLF = "\n";
     private final static String SPACE = " ";
@@ -60,6 +61,11 @@ public class OutputView {
         System.out.println(CRLF + TOTAL_BENEFIT_PRICE_MESSAGE);
         int totalBenefitPrice = eventBenefit.getTotalBenefitPrice();
         System.out.println(MINUS + df.format(totalBenefitPrice) + WON);
+    }
+
+    public void printPaymentPrice(int paymentPrice) {
+        System.out.println(CRLF + PAYMENT_PRICE_MESSAGE);
+        System.out.println(df.format(paymentPrice) + WON);
     }
 
     private String convertMenusToString(OrderMenus orderMenus) {
