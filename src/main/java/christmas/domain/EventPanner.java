@@ -22,5 +22,13 @@ public class EventPanner {
         return EventBadge.findBadgeBy(totalBenefitPrice);
     }
 
+    public EventBenefit getEventBenefit(){
+        return eventBenefit;
+    }
+
+    public OrderMenus getOrderMenus(){
+        return orderMenus;
+    }
+
 }
 
