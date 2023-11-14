@@ -4,6 +4,7 @@ import static christmas.ExceptionMessage.EXCEED_ORDER_MENU_AMOUNT;
 import static christmas.ExceptionMessage.INVALID_ORDER;
 import static christmas.ExceptionMessage.INVALID_ORDER_MENU;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -36,6 +37,10 @@ public class OrderMenus {
         return orderMenus.stream()
                 .mapToInt(OrderMenu::getMainMenuCount)
                 .sum();
+    }
+
+    public List<OrderMenu> getOrderMenus() {
+        return Collections.unmodifiableList(orderMenus);
     }
 
     private void validateMenuCount(List<OrderMenu> orderMenus) {

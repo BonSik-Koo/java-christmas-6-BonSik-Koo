@@ -28,6 +28,10 @@ public class OrderMenu {
         return menu;
     }
 
+    public String getMenuName(){
+        return menu.getName();
+    }
+
     public boolean isDrinkMenu() {
         Category category = Category.findCategoryBy(menu);
         return category.equals(Category.DRINK);

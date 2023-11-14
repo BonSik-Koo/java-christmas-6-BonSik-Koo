@@ -36,6 +36,10 @@ public enum Menu {
         return price;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public static Menu findMenuBy(final String name) {
         return Arrays.stream(Menu.values())
                 .filter(m -> m.isEqualName(name))
