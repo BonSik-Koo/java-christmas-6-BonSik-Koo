@@ -21,29 +21,31 @@ public class EventController {
     }
 
     public void participate() {
-        Date date = inputVisitDate();
-        List<MenuInfo> menus = inputOrderMenuInfo();
-        eventPanner = new EventPanner(date, menus);
+        Date date = createDate();
+        OrderMenus orderMenus = createOrderMenu();
+        eventPanner = new EventPanner(date, orderMenus);
+
         outputView.printEventBenefitPreview(date.getDay());
     }
 
-    private Date inputVisitDate() {
+    private Date createDate() {
         outputView.printEventStartMessage();
         try {
             int day = inputView.readDate();
             return new Date(day);
         } catch (IllegalArgumentException e) {
             outputView.printExceptionMessage(e.getMessage());
-            return inputVisitDate();
+            return createDate();
         }
     }
 
-    private List<MenuInfo> inputOrderMenuInfo() {
+    private OrderMenus createOrderMenu() {
         try {
-            return inputView.readMenu();
+            List<MenuInfo> menuInfos = inputView.readMenu();
+            return new OrderMenus(menuInfos);
         } catch (IllegalArgumentException e) {
             outputView.printExceptionMessage(e.getMessage());
-            return inputOrderMenuInfo();
+            return createOrderMenu();
         }
     }
 

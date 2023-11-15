@@ -1,16 +1,13 @@
 package christmas.domain;
 
-import christmas.dto.MenuInfo;
-import java.util.List;
-
 public class EventPanner {
     private final Date date;
     private final OrderMenus orderMenus;
     private final EventBenefit eventBenefit;
 
-    public EventPanner(Date date, List<MenuInfo> menuInfos) {
+    public EventPanner(Date date, OrderMenus orderMenus) {
         this.date = date;
-        this.orderMenus = new OrderMenus(menuInfos);
+        this.orderMenus = orderMenus;
         this.eventBenefit = new EventBenefit(date, orderMenus);
     }
 

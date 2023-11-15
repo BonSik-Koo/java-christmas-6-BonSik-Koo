@@ -20,8 +20,9 @@ class EventPannerTest {
                 createMenuInfo(Menu.ICE_CREAM, 1),
                 createMenuInfo(Menu.CHOCOLATE_CAKE, 2)
         );
+        OrderMenus orderMenus = new OrderMenus(menus);
 
-        EventPanner eventPanner = new EventPanner(date, menus);
+        EventPanner eventPanner = new EventPanner(date, orderMenus);
 
         //when
         int paymentPrice = eventPanner.getPaymentPrice();
