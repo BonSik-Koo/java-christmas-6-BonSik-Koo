@@ -24,6 +24,7 @@ public class EventController {
         Date date = inputVisitDate();
         List<MenuInfo> menus = inputOrderMenuInfo();
         eventPanner = new EventPanner(date, menus);
+        outputView.printEventBenefitPreview(date.getDay());
     }
 
     private Date inputVisitDate() {

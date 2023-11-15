@@ -42,7 +42,7 @@ public class OutputView {
     }
 
     public void printOrderInfo(OrderMenus orderMenus) {
-        System.out.println(ORDER_MENU_MESSAGE);
+        System.out.println(CRLF + ORDER_MENU_MESSAGE);
         String menuInfo = convertMenusToString(orderMenus);
         System.out.println(menuInfo);
 
@@ -75,7 +75,7 @@ public class OutputView {
         System.out.println(name);
     }
 
-    public void printExceptionMessage(String message){
+    public void printExceptionMessage(String message) {
         System.out.println(message);
     }
 
