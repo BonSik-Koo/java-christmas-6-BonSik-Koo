@@ -1,7 +1,6 @@
 package christmas.controller;
 
 import christmas.domain.Date;
-import christmas.domain.EventBadge;
 import christmas.domain.EventBenefit;
 import christmas.domain.EventPanner;
 import christmas.domain.OrderMenus;
