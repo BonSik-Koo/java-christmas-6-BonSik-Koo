@@ -3,8 +3,8 @@ package christmas.domain;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import christmas.constant.ExceptionMessage;
 import christmas.dto.MenuInfo;
+import christmas.view.ValidateConstant;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -23,7 +23,7 @@ class OrderMenusTest {
         //when & then
         assertThatThrownBy(() -> new OrderMenus(orderMenus))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ExceptionMessage.EXCEED_ORDER_MENU_AMOUNT.getMessage());
+                .hasMessage(ValidateConstant.EXCEED_ORDER_MENU_AMOUNT);
     }
 
     @DisplayName("주문 시 중복 메뉴가 포함되어 예외가 발생한다.")
@@ -38,7 +38,7 @@ class OrderMenusTest {
         //when & then
         assertThatThrownBy(() -> new OrderMenus(orderMenus))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ExceptionMessage.INVALID_ORDER.getMessage());
+                .hasMessage(ValidateConstant.INVALID_ORDER);
     }
 
     @DisplayName("음료 메뉴만 주문할 경우 예외가 발생한다.")
@@ -53,7 +53,7 @@ class OrderMenusTest {
         //when & then
         assertThatThrownBy(() -> new OrderMenus(orderMenus))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ExceptionMessage.INVALID_ORDER_MENU.getMessage());
+                .hasMessage(ValidateConstant.INVALID_ORDER_MENU);
     }
 
     @DisplayName("주문한 메뉴의 총 가격을 계산한다.")

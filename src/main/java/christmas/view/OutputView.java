@@ -1,5 +1,7 @@
 package christmas.view;
 
+import static christmas.view.ValidateConstant.EXCEPTION;
+
 import christmas.domain.EventBenefit;
 import christmas.domain.EventDiscount;
 import christmas.domain.OrderMenu;
@@ -76,7 +78,7 @@ public class OutputView {
     }
 
     public void printExceptionMessage(String message) {
-        System.out.println(message);
+        System.out.println(EXCEPTION + message);
     }
 
     private String convertMenusToString(OrderMenus orderMenus) {

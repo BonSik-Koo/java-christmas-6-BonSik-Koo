@@ -1,6 +1,6 @@
 package christmas.domain;
 
-import static christmas.constant.ExceptionMessage.INVALID_DAY;
+import christmas.view.ValidateConstant;
 
 public class Date {
     private final static int START_DAY = 1;
@@ -14,7 +14,7 @@ public class Date {
 
     public void validateDay(int day) {
         if (START_DAY > day || END_DAY < day) {
-            throw new IllegalArgumentException(INVALID_DAY.getMessage());
+            throw new IllegalArgumentException(ValidateConstant.INVALID_DAY);
         }
     }
 

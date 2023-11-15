@@ -1,23 +1,22 @@
 package christmas.view;
 
-import static christmas.constant.ExceptionMessage.INVALID_DAY;
-import static christmas.constant.ExceptionMessage.INVALID_ORDER;
+import static christmas.view.ValidateConstant.COMMA_DELIMITER;
+import static christmas.view.ValidateConstant.INVALID_DAY;
+import static christmas.view.ValidateConstant.INVALID_ORDER;
+import static christmas.view.ValidateConstant.MENU_INPUT_PATTERN;
+import static christmas.view.ValidateConstant.NUMERIC_PATTERN;
 
 public class InputValidator {
-    private final static String NUMERIC_PATTERN = "^[0-9]+$";
-    private final static String MENU_INPUT_PATTERN = "^([가-힣]+-[0-9]+,)*[가-힣]+-[0-9]+$";
-    private final static String COMMA_DELIMITER = ",";
-
     public static void validateNumeric(String target) {
         if (!target.matches(NUMERIC_PATTERN)) {
-            throw new IllegalArgumentException(INVALID_DAY.getMessage());
+            throw new IllegalArgumentException(INVALID_DAY);
         }
     }
 
     public static void validateMenuPattern(String target) {
         String targetRemovedBlank = target.trim();
         if (targetRemovedBlank.endsWith(COMMA_DELIMITER) || !targetRemovedBlank.matches(MENU_INPUT_PATTERN)) {
-            throw new IllegalArgumentException(INVALID_ORDER.getMessage());
+            throw new IllegalArgumentException(INVALID_ORDER);
         }
     }
 

@@ -1,8 +1,8 @@
 package christmas.domain;
 
-import static christmas.constant.ExceptionMessage.EXCEED_ORDER_MENU_AMOUNT;
-import static christmas.constant.ExceptionMessage.INVALID_ORDER;
-import static christmas.constant.ExceptionMessage.INVALID_ORDER_MENU;
+import static christmas.view.ValidateConstant.EXCEED_ORDER_MENU_AMOUNT;
+import static christmas.view.ValidateConstant.INVALID_ORDER;
+import static christmas.view.ValidateConstant.INVALID_ORDER_MENU;
 
 import christmas.dto.MenuInfo;
 import java.util.Collections;
@@ -51,7 +51,7 @@ public class OrderMenus {
                 .mapToInt(MenuInfo::getAmount)
                 .sum();
         if (totalCount > MAX_ORDER_MENU_AMOUNT) {
-            throw new IllegalArgumentException(EXCEED_ORDER_MENU_AMOUNT.getMessage());
+            throw new IllegalArgumentException(EXCEED_ORDER_MENU_AMOUNT);
         }
     }
 
@@ -59,7 +59,7 @@ public class OrderMenus {
         Set<String> menus = new HashSet<>();
         for (MenuInfo menuInfo : menuInfos) {
             if (!menus.add(menuInfo.getName())) {
-                throw new IllegalArgumentException(INVALID_ORDER.getMessage());
+                throw new IllegalArgumentException(INVALID_ORDER);
             }
         }
     }
@@ -71,7 +71,7 @@ public class OrderMenus {
                 .toList()
                 .size();
         if (drinkMenuCount == menuInfos.size()) {
-            throw new IllegalArgumentException(INVALID_ORDER_MENU.getMessage());
+            throw new IllegalArgumentException(INVALID_ORDER_MENU);
         }
     }
 

@@ -1,8 +1,8 @@
 package christmas.domain;
 
-import static christmas.constant.ExceptionMessage.NOT_EXIST_CATEGORY;
 import static christmas.domain.Menu.*;
 
+import christmas.view.ValidateConstant;
 import java.util.Arrays;
 import java.util.List;
 
@@ -22,7 +22,7 @@ public enum Category {
         return Arrays.stream(Category.values())
                 .filter(c -> c.menus.contains(menu))
                 .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException(NOT_EXIST_CATEGORY.getMessage()));
+                .orElseThrow(() -> new IllegalArgumentException(ValidateConstant.NOT_EXIST_CATEGORY));
     }
 
     public static Category findCategoryBy(String menuName) {

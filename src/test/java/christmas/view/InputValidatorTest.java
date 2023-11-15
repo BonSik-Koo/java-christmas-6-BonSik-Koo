@@ -2,7 +2,6 @@ package christmas.view;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import christmas.constant.ExceptionMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -15,7 +14,7 @@ class InputValidatorTest {
     void validateNumericByString(String input) {
         assertThatThrownBy(() -> InputValidator.validateNumeric(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ExceptionMessage.INVALID_DAY.getMessage());
+                .hasMessage(ValidateConstant.INVALID_DAY);
     }
 
     @DisplayName("문자열이 메뉴 형식에 맞지 않을 경우 예외가 발생한다.")
@@ -24,7 +23,7 @@ class InputValidatorTest {
     void validateMenuPattern(String input) {
         assertThatThrownBy(() -> InputValidator.validateMenuPattern(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ExceptionMessage.INVALID_ORDER.getMessage());
+                .hasMessage(ValidateConstant.INVALID_ORDER);
     }
 
 }

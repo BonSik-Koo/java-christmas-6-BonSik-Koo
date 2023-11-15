@@ -3,7 +3,7 @@ package christmas.domain;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import christmas.constant.ExceptionMessage;
+import christmas.view.ValidateConstant;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -21,7 +21,7 @@ class OrderMenuTest {
         //when & then
         assertThatThrownBy(() -> new OrderMenu(menu.getName(), inputAmount))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ExceptionMessage.INVALID_ORDER.getMessage());
+                .hasMessage(ValidateConstant.INVALID_ORDER);
     }
 
     @DisplayName("주문한 메뉴가 디저트 메뉴일 경우 수량을 반환한다.")

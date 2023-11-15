@@ -2,7 +2,7 @@ package christmas.domain;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import christmas.constant.ExceptionMessage;
+import christmas.view.ValidateConstant;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -15,7 +15,7 @@ class DateTest {
     void createDayOfOutOfRange1Between31(int day) {
         assertThatThrownBy(() -> new Date(day))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ExceptionMessage.INVALID_DAY.getMessage());
+                .hasMessage(ValidateConstant.INVALID_DAY);
     }
 
 }

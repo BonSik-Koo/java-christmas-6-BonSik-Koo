@@ -1,6 +1,6 @@
 package christmas.domain;
 
-import static christmas.constant.ExceptionMessage.INVALID_ORDER;
+import static christmas.view.ValidateConstant.INVALID_ORDER;
 
 public class OrderMenu {
     private final static int MIN_MENU_AMOUNT = 1;
@@ -16,7 +16,7 @@ public class OrderMenu {
 
     private void validateAmount(int amount) {
         if (amount < MIN_MENU_AMOUNT) {
-            throw new IllegalArgumentException(INVALID_ORDER.getMessage());
+            throw new IllegalArgumentException(INVALID_ORDER);
         }
     }
 

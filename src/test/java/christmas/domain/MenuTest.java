@@ -3,7 +3,7 @@ package christmas.domain;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import christmas.constant.ExceptionMessage;
+import christmas.view.ValidateConstant;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -31,7 +31,7 @@ class MenuTest {
         //when & then
         assertThatThrownBy(() -> Menu.findMenuBy(menuName))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ExceptionMessage.INVALID_ORDER.getMessage());
+                .hasMessage(ValidateConstant.INVALID_ORDER);
     }
 
 }

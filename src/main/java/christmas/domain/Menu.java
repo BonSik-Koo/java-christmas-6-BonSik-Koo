@@ -1,7 +1,6 @@
 package christmas.domain;
 
-import static christmas.constant.ExceptionMessage.INVALID_ORDER;
-
+import christmas.view.ValidateConstant;
 import java.util.Arrays;
 
 public enum Menu {
@@ -44,7 +43,7 @@ public enum Menu {
         return Arrays.stream(Menu.values())
                 .filter(m -> m.isEqualName(name))
                 .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException(INVALID_ORDER.getMessage()));
+                .orElseThrow(() -> new IllegalArgumentException(ValidateConstant.INVALID_ORDER));
     }
 
     private boolean isEqualName(String name) {
