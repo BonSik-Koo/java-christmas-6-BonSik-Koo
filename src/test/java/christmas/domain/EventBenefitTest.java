@@ -2,7 +2,6 @@ package christmas.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import christmas.dto.MenuInfo;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -13,17 +12,14 @@ class EventBenefitTest {
     @Test
     void calculateTotalDiscountPrice() {
         //given
-        final int predictionTotalPrice = 1900 + 6069 + 1000;
-        Date date = new Date(10); // 크리스마스, 평일, 스페셜 할인
+        final int predictionTotalPrice = 1000 + 2000;
 
-        List<MenuInfo> menus = List.of(
-                createMenuInfo(Menu.ICE_CREAM, 1),
-                createMenuInfo(Menu.T_BONE_STEAK, 2),
-                createMenuInfo(Menu.CHOCOLATE_CAKE, 2)
+        List<EventDiscount> menus = List.of(
+                createEventDiscount(EventDiscountType.SPECIAL, 0),
+                createEventDiscount(EventDiscountType.PRESENT, 0),
+                createEventDiscount(EventDiscountType.CHRISTMAS, 10)
         );
-        OrderMenus orderMenus = new OrderMenus(menus);
-
-        EventBenefit eventBenefit = new EventBenefit(date, orderMenus);
+        EventBenefit eventBenefit = new EventBenefit(menus);
 
         //when
         int totalDiscountPrice = eventBenefit.getTotalDiscountPrice();
@@ -32,41 +28,18 @@ class EventBenefitTest {
         assertThat(totalDiscountPrice).isEqualTo(predictionTotalPrice);
     }
 
-    @DisplayName("총 할인 금액이 존재하지 않는다.")
-    @Test
-    void zeroTotalDiscountPrice() {
-        //given
-        Date date = new Date(30); // 주말 할인
-
-        List<MenuInfo> menus = List.of(
-                createMenuInfo(Menu.ICE_CREAM, 1),
-                createMenuInfo(Menu.CHOCOLATE_CAKE, 1)
-        );
-        OrderMenus orderMenus = new OrderMenus(menus);
-
-        EventBenefit eventBenefit = new EventBenefit(date, orderMenus);
-
-        //when
-        int totalDiscountPrice = eventBenefit.getTotalDiscountPrice();
-
-        //then
-        assertThat(totalDiscountPrice).isEqualTo(0);
-    }
-
     @DisplayName("총 혜택 금액을 계산한다.")
     @Test
     void calculateTotalBenefitPrice() {
         //given
-        final int predictionTotalPrice = (2023 * 20) + 1000 + 25000;
-        Date date = new Date(31); // 평일, 특별 할인
+        final int predictionTotalPrice = 1000 + 25000 + 2000;
 
-        List<MenuInfo> menus = List.of(
-                createMenuInfo(Menu.ICE_CREAM, 10),
-                createMenuInfo(Menu.CHOCOLATE_CAKE, 10)
+        List<EventDiscount> menus = List.of(
+                createEventDiscount(EventDiscountType.SPECIAL, 0),
+                createEventDiscount(EventDiscountType.PRESENT, 0),
+                createEventDiscount(EventDiscountType.CHRISTMAS, 10)
         );
-        OrderMenus orderMenus = new OrderMenus(menus);
-
-        EventBenefit eventBenefit = new EventBenefit(date, orderMenus);
+        EventBenefit eventBenefit = new EventBenefit(menus);
 
         //when
         int totalBenefitPrice = eventBenefit.getTotalBenefitPrice();
@@ -79,14 +52,12 @@ class EventBenefitTest {
     @Test
     void hasPresentPresentDiscount() {
         //given
-        Date date = new Date(28);
-
-        List<MenuInfo> menus = List.of(
-                createMenuInfo(Menu.T_BONE_STEAK, 10)
+        List<EventDiscount> menus = List.of(
+                createEventDiscount(EventDiscountType.SPECIAL, 0),
+                createEventDiscount(EventDiscountType.PRESENT, 0),
+                createEventDiscount(EventDiscountType.CHRISTMAS, 10)
         );
-        OrderMenus orderMenus = new OrderMenus(menus);
-
-        EventBenefit eventBenefit = new EventBenefit(date, orderMenus);
+        EventBenefit eventBenefit = new EventBenefit(menus);
 
         //when
         boolean result = eventBenefit.hasPresentPresentDiscount();
@@ -95,8 +66,8 @@ class EventBenefitTest {
         assertThat(result).isTrue();
     }
 
-    private MenuInfo createMenuInfo(Menu menu, int amount) {
-        return new MenuInfo(menu.getName(), amount);
+    private EventDiscount createEventDiscount(EventDiscountType type, int target) {
+        return new EventDiscount(type, target);
     }
 
 }

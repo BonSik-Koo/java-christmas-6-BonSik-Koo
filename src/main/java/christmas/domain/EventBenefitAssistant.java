@@ -3,14 +3,23 @@ package christmas.domain;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EventDiscountClassifier {
+public class EventBenefitAssistant {
+    private final static int EVENT_BENEFIT_STANDARD_PRICE = 10000;
     private final static int MIN_DISCOUNT_MENU_COUNT = 1;
     private final static int PRESENT_MENU_STANDARD_PRICE = 120000;
 
     public static List<EventDiscount> generateEventBenefits(Date date, OrderMenus orderMenus) {
-        List<EventDiscount> benefits = new ArrayList<>();
+        int totalOrderPrice = orderMenus.calculateTotalPrice();
+        if (totalOrderPrice >= EVENT_BENEFIT_STANDARD_PRICE) {
+            return selectEventDiscounts(date, orderMenus);
+        }
+        return new ArrayList<>();
+    }
 
+    private static List<EventDiscount> selectEventDiscounts(Date date, OrderMenus orderMenus) {
+        List<EventDiscount> benefits = new ArrayList<>();
         List<EventDiscountType> eventDiscountTypes = EventCalendar.findEventDiscountTypes(date.getDay());
+
         for (EventDiscountType type : eventDiscountTypes) {
             addChristmasBenefit(benefits, type, date);
             addWeekDayBenefit(benefits, type, orderMenus);

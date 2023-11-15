@@ -1,5 +1,7 @@
 package christmas.domain;
 
+import java.util.List;
+
 public class EventPanner {
     private final Date date;
     private final OrderMenus orderMenus;
@@ -8,7 +10,9 @@ public class EventPanner {
     public EventPanner(Date date, OrderMenus orderMenus) {
         this.date = date;
         this.orderMenus = orderMenus;
-        this.eventBenefit = new EventBenefit(date, orderMenus);
+
+        List<EventDiscount> eventDiscounts = EventBenefitAssistant.generateEventBenefits(date, orderMenus);
+        this.eventBenefit = new EventBenefit(eventDiscounts);
     }
 
     public int getPaymentPrice() {
