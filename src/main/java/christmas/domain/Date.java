@@ -5,7 +5,6 @@ import static christmas.constant.ExceptionMessage.INVALID_DAY;
 public class Date {
     private final static int START_DAY = 1;
     private final static int END_DAY = 31;
-    private final static int CHRISTMAS_START_DAY = 1;
     private final int day;
 
     public Date(int day) {
@@ -24,7 +23,7 @@ public class Date {
     }
 
     public int getDiffChristmasStartDate() {
-        return day - CHRISTMAS_START_DAY;
+        return day - START_DAY;
     }
 
 }
