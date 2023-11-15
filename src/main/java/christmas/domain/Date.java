@@ -1,6 +1,6 @@
 package christmas.domain;
 
-import static christmas.ExceptionMessage.INVALID_DAY;
+import static christmas.constant.ExceptionMessage.INVALID_DAY;
 
 public class Date {
     private final static int START_DAY = 1;

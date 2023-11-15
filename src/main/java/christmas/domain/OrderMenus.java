@@ -1,8 +1,8 @@
 package christmas.domain;
 
-import static christmas.ExceptionMessage.EXCEED_ORDER_MENU_AMOUNT;
-import static christmas.ExceptionMessage.INVALID_ORDER;
-import static christmas.ExceptionMessage.INVALID_ORDER_MENU;
+import static christmas.constant.ExceptionMessage.EXCEED_ORDER_MENU_AMOUNT;
+import static christmas.constant.ExceptionMessage.INVALID_ORDER;
+import static christmas.constant.ExceptionMessage.INVALID_ORDER_MENU;
 
 import christmas.dto.MenuInfo;
 import java.util.Collections;

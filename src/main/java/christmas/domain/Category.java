@@ -1,6 +1,6 @@
 package christmas.domain;
 
-import static christmas.ExceptionMessage.NOT_EXIST_CATEGORY;
+import static christmas.constant.ExceptionMessage.NOT_EXIST_CATEGORY;
 import static christmas.domain.Menu.*;
 
 import java.util.Arrays;

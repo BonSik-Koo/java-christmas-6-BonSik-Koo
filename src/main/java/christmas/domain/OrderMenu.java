@@ -1,6 +1,6 @@
 package christmas.domain;
 
-import static christmas.ExceptionMessage.INVALID_ORDER;
+import static christmas.constant.ExceptionMessage.INVALID_ORDER;
 
 public class OrderMenu {
     private final static int MIN_MENU_AMOUNT = 1;

@@ -1,7 +1,7 @@
 package christmas.view;
 
-import static christmas.ExceptionMessage.INVALID_DAY;
-import static christmas.ExceptionMessage.INVALID_ORDER;
+import static christmas.constant.ExceptionMessage.INVALID_DAY;
+import static christmas.constant.ExceptionMessage.INVALID_ORDER;
 
 public class InputValidator {
     private final static String NUMERIC_PATTERN = "^[0-9]+$";
