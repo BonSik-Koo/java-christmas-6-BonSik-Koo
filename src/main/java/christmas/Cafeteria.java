@@ -2,10 +2,10 @@ package christmas;
 
 import christmas.controller.EventController;
 
-public class WoowaCafeteria {
+public class Cafeteria {
     private final EventController eventController;
 
-    public WoowaCafeteria() {
+    public Cafeteria() {
         eventController = new EventController();
     }
 
