@@ -1,6 +1,24 @@
 package christmas.view;
 
 import static christmas.view.ValidateConstant.EXCEPTION;
+import static christmas.view.ViewConstant.BENEFIT_INFO_MESSAGE;
+import static christmas.view.ViewConstant.COLON;
+import static christmas.view.ViewConstant.COUNT;
+import static christmas.view.ViewConstant.CRLF;
+import static christmas.view.ViewConstant.DECIMAL_FORMAT;
+import static christmas.view.ViewConstant.EVENT_BADGE_MESSAGE;
+import static christmas.view.ViewConstant.EVENT_BENEFIT_PREVIEW_MESSAGE;
+import static christmas.view.ViewConstant.EVENT_START_MESSAGE;
+import static christmas.view.ViewConstant.MINUS;
+import static christmas.view.ViewConstant.NONE;
+import static christmas.view.ViewConstant.ORDER_MENU_MESSAGE;
+import static christmas.view.ViewConstant.ORDER_TOTAL_PRICE_MESSAGE;
+import static christmas.view.ViewConstant.PAYMENT_PRICE_MESSAGE;
+import static christmas.view.ViewConstant.PRESENT_MENU;
+import static christmas.view.ViewConstant.PRESENT_MENU_MESSAGE;
+import static christmas.view.ViewConstant.SPACE;
+import static christmas.view.ViewConstant.TOTAL_BENEFIT_PRICE_MESSAGE;
+import static christmas.view.ViewConstant.WON;
 
 import christmas.domain.EventBenefit;
 import christmas.domain.EventDiscount;
@@ -11,27 +29,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class OutputView {
-    private final static String EVENT_START_MESSAGE = "안녕하세요! 우테코 식당 12월 이벤트 플래너입니다.";
-    private final static String EVENT_BENEFIT_PREVIEW_MESSAGE = "12월 %d일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!";
-    private final static String ORDER_MENU_MESSAGE = "<주문 메뉴>";
-    private final static String ORDER_TOTAL_PRICE_MESSAGE = "<할인 전 총주문 금액>";
-    private final static String PRESENT_MENU_MESSAGE = "<증정 메뉴>";
-    private final static String BENEFIT_INFO_MESSAGE = "<혜택 내역>";
-    private final static String TOTAL_BENEFIT_PRICE_MESSAGE = "<총혜택 금액>";
-    private final static String PAYMENT_PRICE_MESSAGE = "<할인 후 예상 결제 금액>";
-    private final static String EVENT_BADGE_MESSAGE = "<12월 이벤트 배지>";
-    private final static String PRESENT_MENU = "삼페인 1개";
-    private final static String CRLF = "\n";
-    private final static String SPACE = " ";
-    private final static String COUNT = "개";
-    private final static String WON = "원";
-    private final static String MINUS = "-";
-    private final static String COLON = ": ";
-    private final static String NONE = "없음";
     private final DecimalFormat df;
 
     public OutputView() {
-        df = new DecimalFormat("###,###");
+        df = new DecimalFormat(DECIMAL_FORMAT);
     }
 
     public void printEventStartMessage() {
