@@ -17,9 +17,10 @@ public class EventPanner {
         return totalOrderMenuPrice - totalDiscountPrice;
     }
 
-    public EventBadge getBadge() {
+    public String getBadge() {
         int totalBenefitPrice = eventBenefit.getTotalBenefitPrice();
-        return EventBadge.findBadgeBy(totalBenefitPrice);
+        EventBadge eventBadge = EventBadge.findBadgeBy(totalBenefitPrice);
+        return eventBadge.getName();
     }
 
     public EventBenefit getEventBenefit() {

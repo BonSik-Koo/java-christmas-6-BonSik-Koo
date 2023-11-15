@@ -65,8 +65,8 @@ public class EventController {
     }
 
     public void readBadgeInfo() {
-        EventBadge badge = eventPanner.getBadge();
-        outputView.printEventBadge(badge.getName());
+        String eventBadge = eventPanner.getBadge();
+        outputView.printEventBadge(eventBadge);
     }
 
 }
